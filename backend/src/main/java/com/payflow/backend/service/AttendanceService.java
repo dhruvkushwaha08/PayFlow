@@ -4,6 +4,7 @@ import com.payflow.backend.dto.CreateAttendanceRequest;
 import com.payflow.backend.dto.UpdateAttendanceRequest;
 import com.payflow.backend.entity.Attendance;
 import com.payflow.backend.entity.Employee;
+import com.payflow.backend.entity.Payroll;
 import com.payflow.backend.exception.AttendanceNotFoundException;
 import com.payflow.backend.exception.DuplicateAttendanceException;
 import com.payflow.backend.exception.EmployeeNotFoundException;
@@ -11,10 +12,13 @@ import com.payflow.backend.exception.InactiveEmployeeException;
 import com.payflow.backend.exception.InvalidAttendanceException;
 import com.payflow.backend.repository.AttendanceRepository;
 import com.payflow.backend.repository.EmployeeRepository;
+import com.payflow.backend.repository.PayrollRepository;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.YearMonth;
 import java.util.List;
 
 @Service
@@ -22,18 +26,29 @@ public class AttendanceService {
 
     private final AttendanceRepository attendanceRepository;
     private final EmployeeRepository employeeRepository;
+    private final PayrollRepository payrollRepository;
 
     public AttendanceService(
             AttendanceRepository attendanceRepository,
-            EmployeeRepository employeeRepository) {
+            EmployeeRepository employeeRepository,
+            PayrollRepository payrollRepository) {
 
         this.attendanceRepository = attendanceRepository;
         this.employeeRepository = employeeRepository;
+        this.payrollRepository = payrollRepository;
     }
+
+    // =========================================================
+    // GET ALL ATTENDANCE
+    // =========================================================
 
     public List<Attendance> getAllAttendance() {
         return attendanceRepository.findAll();
     }
+
+    // =========================================================
+    // GET ATTENDANCE BY ID
+    // =========================================================
 
     public Attendance getAttendanceById(Long id) {
 
@@ -42,24 +57,57 @@ public class AttendanceService {
                         new AttendanceNotFoundException(id));
     }
 
+    // =========================================================
+    // CREATE ATTENDANCE
+    // =========================================================
+
     public Attendance createAttendance(CreateAttendanceRequest request) {
 
         Employee employee = employeeRepository.findById(request.getEmployeeId())
                 .orElseThrow(() ->
-                        new EmployeeNotFoundException(request.getEmployeeId()));
+                        new EmployeeNotFoundException(
+                                request.getEmployeeId()));
+
+        // -----------------------------------------------------
+        // Check employee status
+        // -----------------------------------------------------
 
         if (!"ACTIVE".equals(employee.getStatus())) {
-            throw new InactiveEmployeeException(request.getEmployeeId());
+            throw new InactiveEmployeeException(
+                    request.getEmployeeId());
         }
+
+        // -----------------------------------------------------
+        // Validate attendance date
+        // -----------------------------------------------------
 
         validateAttendanceDate(
                 request.getAttendanceDate(),
                 employee.getJoiningDate()
         );
 
-        validateCheckInAndCheckOut(request.getStatus(),
+        // -----------------------------------------------------
+        // Check finalized payroll
+        // -----------------------------------------------------
+
+        validatePayrollLock(
+                request.getEmployeeId(),
+                request.getAttendanceDate()
+        );
+
+        // -----------------------------------------------------
+        // Validate check-in / check-out
+        // -----------------------------------------------------
+
+        validateCheckInAndCheckOut(
+                request.getStatus(),
                 request.getCheckIn(),
-                request.getCheckOut());
+                request.getCheckOut()
+        );
+
+        // -----------------------------------------------------
+        // Create attendance
+        // -----------------------------------------------------
 
         Attendance attendance = new Attendance();
 
@@ -81,6 +129,10 @@ public class AttendanceService {
         }
     }
 
+    // =========================================================
+    // UPDATE ATTENDANCE
+    // =========================================================
+
     public Attendance updateAttendance(
             Long id,
             UpdateAttendanceRequest request) {
@@ -95,15 +147,45 @@ public class AttendanceService {
                         new EmployeeNotFoundException(
                                 attendance.getEmployeeId()));
 
+        // -----------------------------------------------------
+        // Check employee status
+        // -----------------------------------------------------
+
         if (!"ACTIVE".equals(employee.getStatus())) {
             throw new InactiveEmployeeException(
                     employee.getEmployeeId());
         }
 
+        // -----------------------------------------------------
+        // Validate attendance date
+        // -----------------------------------------------------
+
         validateAttendanceDate(
                 request.getAttendanceDate(),
                 employee.getJoiningDate()
         );
+
+        // -----------------------------------------------------
+        // Check old attendance month
+        // -----------------------------------------------------
+
+        validatePayrollLock(
+                attendance.getEmployeeId(),
+                attendance.getAttendanceDate()
+        );
+
+        // -----------------------------------------------------
+        // Check new attendance month
+        // -----------------------------------------------------
+
+        validatePayrollLock(
+                attendance.getEmployeeId(),
+                request.getAttendanceDate()
+        );
+
+        // -----------------------------------------------------
+        // Validate check-in / check-out
+        // -----------------------------------------------------
 
         validateCheckInAndCheckOut(
                 request.getStatus(),
@@ -111,11 +193,24 @@ public class AttendanceService {
                 request.getCheckOut()
         );
 
-        attendance.setAttendanceDate(request.getAttendanceDate());
-        attendance.setStatus(request.getStatus());
-        attendance.setCheckIn(request.getCheckIn());
-        attendance.setCheckOut(request.getCheckOut());
-        attendance.setNotes(request.getNotes());
+        // -----------------------------------------------------
+        // Update attendance
+        // -----------------------------------------------------
+
+        attendance.setAttendanceDate(
+                request.getAttendanceDate());
+
+        attendance.setStatus(
+                request.getStatus());
+
+        attendance.setCheckIn(
+                request.getCheckIn());
+
+        attendance.setCheckOut(
+                request.getCheckOut());
+
+        attendance.setNotes(
+                request.getNotes());
 
         try {
 
@@ -127,6 +222,45 @@ public class AttendanceService {
                     attendance.getEmployeeId());
         }
     }
+
+    // =========================================================
+    // PAYROLL LOCK VALIDATION
+    // =========================================================
+
+    private void validatePayrollLock(
+            Long employeeId,
+            LocalDate attendanceDate) {
+
+        YearMonth attendanceMonth =
+                YearMonth.from(attendanceDate);
+
+        List<Payroll> payrollRecords =
+                payrollRepository.findByEmployeeId(employeeId);
+
+        for (Payroll payroll : payrollRecords) {
+
+            if (payroll.getPayrollMonth() == null) {
+                continue;
+            }
+
+            YearMonth payrollMonth =
+                    YearMonth.from(payroll.getPayrollMonth());
+
+            if (attendanceMonth.equals(payrollMonth)
+                    && "FINALIZED".equalsIgnoreCase(
+                            payroll.getStatus())) {
+
+                throw new InvalidAttendanceException(
+                        "Attendance cannot be modified because payroll for "
+                                + attendanceMonth
+                                + " is finalized");
+            }
+        }
+    }
+
+    // =========================================================
+    // ATTENDANCE DATE VALIDATION
+    // =========================================================
 
     private void validateAttendanceDate(
             LocalDate attendanceDate,
@@ -147,12 +281,17 @@ public class AttendanceService {
         }
     }
 
+    // =========================================================
+    // CHECK-IN / CHECK-OUT VALIDATION
+    // =========================================================
+
     private void validateCheckInAndCheckOut(
             String status,
-            java.time.LocalTime checkIn,
-            java.time.LocalTime checkOut) {
+            LocalTime checkIn,
+            LocalTime checkOut) {
 
-        if ("ABSENT".equals(status) || "LEAVE".equals(status)) {
+        if ("ABSENT".equals(status)
+                || "LEAVE".equals(status)) {
 
             if (checkIn != null || checkOut != null) {
 

@@ -93,4 +93,13 @@ public class GlobalExceptionHandler {
     public String handleInvalidOvertime(InvalidOvertimeException exception) {
         return exception.getMessage();
     }
+
+
+    // General IllegalArgumentException
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String handleIllegalArgumentException(IllegalArgumentException exception) {
+        return exception.getMessage();
+    }
 }
