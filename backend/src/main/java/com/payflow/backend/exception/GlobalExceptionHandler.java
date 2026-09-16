@@ -78,4 +78,19 @@ public class GlobalExceptionHandler {
     public String handleInvalidBonus(InvalidBonusException exception) {
         return exception.getMessage();
     }
+
+
+    // Overtime exceptions
+
+    @ExceptionHandler(OvertimeNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleOvertimeNotFound(OvertimeNotFoundException exception) {
+        return exception.getMessage();
+    }
+
+    @ExceptionHandler(InvalidOvertimeException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String handleInvalidOvertime(InvalidOvertimeException exception) {
+        return exception.getMessage();
+    }
 }
