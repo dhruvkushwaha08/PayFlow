@@ -47,4 +47,18 @@ public class GlobalExceptionHandler {
     public String handleInactiveEmployee(InactiveEmployeeException exception) {
         return exception.getMessage();
     }
+
+    // Advance Exceptions
+
+    @ExceptionHandler(AdvanceNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleAdvanceNotFound(AdvanceNotFoundException exception) {
+        return exception.getMessage();
+    }
+
+    @ExceptionHandler(InvalidAdvanceException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String handleInvalidAdvance(InvalidAdvanceException exception) {
+        return exception.getMessage();
+    }
 }
