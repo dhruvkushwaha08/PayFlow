@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    // Employee Exceptions
+
     @ExceptionHandler(EmployeeNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String handleEmployeeNotFound(EmployeeNotFoundException exception) {
@@ -17,6 +19,32 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DuplicateEmployeeException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public String handleDuplicateEmployee(DuplicateEmployeeException exception) {
+        return exception.getMessage();
+    }
+
+    // Attendance Exceptions
+
+    @ExceptionHandler(AttendanceNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleAttendanceNotFound(AttendanceNotFoundException exception) {
+        return exception.getMessage();
+    }
+
+    @ExceptionHandler(DuplicateAttendanceException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public String handleDuplicateAttendance(DuplicateAttendanceException exception) {
+        return exception.getMessage();
+    }
+
+    @ExceptionHandler(InvalidAttendanceException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String handleInvalidAttendance(InvalidAttendanceException exception) {
+        return exception.getMessage();
+    }
+
+    @ExceptionHandler(InactiveEmployeeException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String handleInactiveEmployee(InactiveEmployeeException exception) {
         return exception.getMessage();
     }
 }
