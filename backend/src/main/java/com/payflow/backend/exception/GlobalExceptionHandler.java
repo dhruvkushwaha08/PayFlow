@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    // Employee Exceptions
+    // Employee exceptions
 
     @ExceptionHandler(EmployeeNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
@@ -22,7 +22,8 @@ public class GlobalExceptionHandler {
         return exception.getMessage();
     }
 
-    // Attendance Exceptions
+
+    // Attendance exceptions
 
     @ExceptionHandler(AttendanceNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
@@ -48,7 +49,8 @@ public class GlobalExceptionHandler {
         return exception.getMessage();
     }
 
-    // Advance Exceptions
+
+    // Advance exceptions
 
     @ExceptionHandler(AdvanceNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
@@ -59,6 +61,21 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(InvalidAdvanceException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public String handleInvalidAdvance(InvalidAdvanceException exception) {
+        return exception.getMessage();
+    }
+
+
+    // Bonus exceptions
+
+    @ExceptionHandler(BonusNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleBonusNotFound(BonusNotFoundException exception) {
+        return exception.getMessage();
+    }
+
+    @ExceptionHandler(InvalidBonusException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String handleInvalidBonus(InvalidBonusException exception) {
         return exception.getMessage();
     }
 }
