@@ -1,0 +1,4358 @@
+/* =========================================================
+   PAYFLOW — FINAL APPLICATION STYLES
+   Pastel • Minimal • Cute • Professional
+   ========================================================= */
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+:root {
+  --text-main: #40384f;
+  --text-dark: #443b52;
+  --text-soft: #8d8296;
+  --text-muted: #a097a6;
+
+  --lavender: #eadcf1;
+  --lavender-dark: #dba5d8;
+
+  --peach: #f5dfd3;
+  --peach-dark: #e5b0a1;
+
+  --mint: #dcefe7;
+  --mint-dark: #9bcbb4;
+
+  --sky: #dceaf4;
+  --sky-dark: #9dbfd8;
+
+  --cream: #fffdfd;
+  --surface: rgba(255, 255, 255, 0.78);
+
+  --border: #eadfe7;
+  --border-soft: #f0e8ef;
+
+  --danger-bg: #faeded;
+  --danger-text: #a96d6d;
+
+  --success-bg: #e2f2e9;
+  --success-text: #5d866f;
+
+  --shadow: 0 8px 28px rgba(82, 64, 92, 0.055);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: var(--text-main);
+  background: #f8f1fa;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  outline: none;
+}
+
+a {
+  color: inherit;
+}
+
+
+/* =========================================================
+   MAIN PAGE STRUCTURE
+   ========================================================= */
+
+.page {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-bottom: 40px;
+}
+
+.page-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.page-heading h1 {
+  margin: 4px 0 7px;
+  color: var(--text-main);
+  font-size: 34px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+}
+
+.page-heading p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 14px;
+}
+
+.page-eyebrow {
+  margin: 0 0 5px !important;
+  color: #9b879f !important;
+  font-size: 12px !important;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.page-subtitle {
+  color: var(--text-soft);
+  font-size: 14px;
+}
+
+.primary-button {
+  border: none;
+  background: var(--lavender-dark);
+  color: #4b3d50;
+  padding: 11px 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.2s ease;
+  white-space: nowrap;
+}
+
+.primary-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 18px rgba(110, 82, 120, 0.13);
+}
+
+.primary-button:active {
+  transform: translateY(0);
+}
+
+.secondary-button {
+  height: 42px;
+  padding: 0 18px;
+  border-radius: 11px;
+  border: 1px solid #e3d9df;
+  background: #fff;
+  color: #68596c;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.secondary-button:hover {
+  background: #faf5f7;
+}
+
+
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+
+.dashboard-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-bottom: 30px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.stat-card {
+  padding: 22px;
+  min-height: 125px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 3px 14px rgba(92, 72, 105, 0.025);
+  transition: 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(80, 65, 95, 0.08);
+}
+
+.stat-card.lavender {
+  background: var(--lavender);
+}
+
+.stat-card.peach {
+  background: var(--peach);
+}
+
+.stat-card.mint {
+  background: var(--mint);
+}
+
+.stat-card.sky {
+  background: var(--sky);
+}
+
+.stat-label {
+  display: block;
+  margin-bottom: 10px;
+  color: #776d82;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.stat-card h2 {
+  margin: 0;
+  color: #40384f;
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.stat-card p {
+  margin: 7px 0 0;
+  color: #8a8194;
+  font-size: 13px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 16px;
+}
+
+.dashboard-card {
+  background: var(--surface);
+  border: 1px solid rgba(220, 207, 226, 0.75);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+
+.card-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.card-heading h3 {
+  margin: 0 0 5px;
+  color: #443b52;
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.card-heading p {
+  margin: 0;
+  color: #91889c;
+  font-size: 13px;
+}
+
+.view-button {
+  border: none;
+  background: #f1e8f3;
+  color: #66516e;
+  padding: 9px 13px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.view-button:hover {
+  background: #e9dced;
+}
+
+.payroll-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.payroll-summary > div {
+  background: #faf6fb;
+  border-radius: 13px;
+  padding: 15px;
+}
+
+.payroll-summary span {
+  display: block;
+  margin-bottom: 7px;
+  color: #91889c;
+  font-size: 12px;
+}
+
+.payroll-summary strong {
+  color: #443b52;
+  font-size: 17px;
+}
+
+.quick-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.quick-actions button {
+  border: 1px solid #eee4f0;
+  background: #fcf9fc;
+  color: #5b5063;
+  border-radius: 12px;
+  padding: 13px 12px;
+  text-align: left;
+  font-size: 13px;
+  transition: 0.2s ease;
+}
+
+.quick-actions button:hover {
+  background: #f5edf7;
+  border-color: #dfc9e3;
+  transform: translateY(-1px);
+}
+
+.activity-list {
+  margin-top: 18px;
+}
+
+.activity-item {
+  display: grid;
+  grid-template-columns: 38px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 14px 0;
+  border-top: 1px solid #eee8f0;
+}
+
+.activity-item:first-child {
+  border-top: none;
+}
+
+.activity-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lavender-icon {
+  background: var(--lavender);
+}
+
+.mint-icon {
+  background: var(--mint);
+}
+
+.peach-icon {
+  background: var(--peach);
+}
+
+.sky-icon {
+  background: var(--sky);
+}
+
+.activity-item strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #4a4153;
+  font-size: 13px;
+}
+
+.activity-item p {
+  margin: 0;
+  color: #968c9f;
+  font-size: 12px;
+}
+
+.activity-item > span {
+  color: #a098a7;
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   EMPLOYEES
+   ========================================================= */
+
+.employees-page {
+  min-height: 100%;
+}
+
+.employees-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.employees-header h1 {
+  margin: 4px 0 8px;
+  font-size: 34px;
+  letter-spacing: -1px;
+}
+
+.peach-eyebrow {
+  color: #c28d7d;
+}
+
+.peach-button {
+  background: var(--peach-dark);
+  color: #4c3540;
+}
+
+.peach-button:hover {
+  background: #dfa292;
+}
+
+.employee-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.employee-summary-card {
+  padding: 22px 24px;
+  border-radius: 20px;
+  border: 1px solid rgba(100, 70, 80, 0.08);
+}
+
+.employee-summary-card span {
+  display: block;
+  margin-bottom: 8px;
+  color: #786c7c;
+  font-size: 13px;
+}
+
+.employee-summary-card strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #40324f;
+  font-size: 28px;
+}
+
+.employee-summary-card small {
+  color: #928696;
+  font-size: 12px;
+}
+
+.peach-card {
+  background: #f7dfd4;
+}
+
+.mint-card {
+  background: #dcefe8;
+}
+
+.lavender-card {
+  background: #e9def1;
+}
+
+.error-message {
+  margin-bottom: 20px;
+  padding: 13px 16px;
+  border-radius: 12px;
+  background: #f8dede;
+  color: #8c4f4f;
+  border: 1px solid #edc5c5;
+  font-size: 13px;
+}
+
+.success-banner {
+  margin-bottom: 20px;
+  padding: 13px 16px;
+  border-radius: 12px;
+  background: var(--success-bg);
+  color: var(--success-text);
+  border: 1px solid #cfe7d9;
+  font-size: 13px;
+}
+
+.employees-card {
+  background: #fffdfd;
+  border: 1px solid #eadfe5;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.employees-card-header {
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid #eee5e9;
+}
+
+.employees-card-header h2 {
+  margin: 0 0 6px;
+  color: #45364f;
+  font-size: 19px;
+}
+
+.employees-card-header p {
+  margin: 0;
+  color: #948796;
+  font-size: 13px;
+}
+
+.employee-filters {
+  display: flex;
+  gap: 10px;
+}
+
+.employee-filters input,
+.employee-filters select {
+  height: 40px;
+  padding: 0 13px;
+  border: 1px solid #e5d9e0;
+  border-radius: 10px;
+  background: #fffafa;
+  color: #4c3b54;
+}
+
+.employee-filters input {
+  width: 220px;
+}
+
+.employee-filters input:focus,
+.employee-filters select:focus {
+  border-color: #dca99b;
+  box-shadow: 0 0 0 3px rgba(220, 169, 155, 0.12);
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.employees-table,
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.employees-table th,
+.data-table th {
+  padding: 15px 20px;
+  background: #fcf8fa;
+  color: #918291;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.employees-table td,
+.data-table td {
+  padding: 17px 20px;
+  border-top: 1px solid #f0e8ed;
+  color: #5d5064;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.employees-table tbody tr,
+.data-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.employees-table tbody tr:hover,
+.data-table tbody tr:hover {
+  background: #fff9f7;
+}
+
+.employee-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.employee-avatar {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #efd0c5;
+  color: #805e61;
+  font-weight: 700;
+}
+
+.employee-name-cell strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #49394f;
+  font-size: 13px;
+}
+
+.employee-name-cell span {
+  display: block;
+  color: #9b8d9c;
+  font-size: 11px;
+}
+
+.employee-code {
+  padding: 5px 8px;
+  border-radius: 7px;
+  background: #f6edf1;
+  color: #725e71;
+  font-size: 11px;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.status-badge span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.status-active {
+  background: #e0f1e8;
+  color: #527967;
+}
+
+.status-active span {
+  background: #6fa88a;
+}
+
+.status-inactive {
+  background: #f1e9ed;
+  color: #8b7b85;
+}
+
+.status-inactive span {
+  background: #a99ba3;
+}
+
+.table-action {
+  border: none;
+  background: transparent;
+  color: #76657a;
+  padding: 7px 9px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.table-action:hover {
+  background: #f7edf5;
+}
+
+.danger-action {
+  color: #b67575;
+}
+
+.danger-action:hover {
+  background: #faeded;
+}
+
+.inactive-text {
+  color: #a79aa3;
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   GENERIC PAGE STATES
+   ========================================================= */
+
+.page-state {
+  padding: 70px 20px;
+  text-align: center;
+  color: #948796;
+}
+
+.page-state h3 {
+  margin: 10px 0 5px;
+  color: #53445b;
+}
+
+.page-state p {
+  margin: 0;
+  font-size: 13px;
+}
+
+.empty-icon {
+  width: 55px;
+  height: 55px;
+  margin: auto;
+  border-radius: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7dfd4;
+  font-size: 23px;
+}
+
+.loading-circle {
+  width: 28px;
+  height: 28px;
+  margin: 20px auto;
+  border: 3px solid #eee4ed;
+  border-top-color: #c99bc8;
+  border-radius: 50%;
+  animation: payflow-spin 0.8s linear infinite;
+}
+
+@keyframes payflow-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================================
+   GENERIC PAGE HEADER
+   ========================================================= */
+
+.page-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.page-top h1 {
+  margin: 4px 0 7px;
+  color: var(--text-main);
+  font-size: 34px;
+}
+
+.page-top p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   ATTENDANCE
+   MINT THEME
+   ========================================================= */
+
+.attendance-page {
+  max-width: 1280px;
+}
+
+.attendance-page .page-eyebrow {
+  color: #729a88 !important;
+}
+
+.attendance-page .primary-button {
+  background: #acd4c0;
+  color: #385c4d;
+}
+
+.attendance-page .primary-button:hover {
+  background: #9fcab6;
+}
+
+.attendance-summary,
+.advances-summary,
+.bonuses-summary,
+.overtime-summary,
+.payroll-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.summary-card {
+  padding: 20px;
+  border-radius: 18px;
+  border: 1px solid rgba(90, 80, 100, 0.07);
+  box-shadow: var(--shadow);
+}
+
+.summary-card.lavender {
+  background: #eadcf1;
+}
+
+.summary-card.peach {
+  background: #f5dfd3;
+}
+
+.summary-card.mint {
+  background: #dcefe7;
+}
+
+.summary-card.sky {
+  background: #dceaf4;
+}
+
+.summary-card strong {
+  display: block;
+  margin: 8px 0 4px;
+  color: #40384f;
+  font-size: 25px;
+}
+
+.summary-card span {
+  color: #786d81;
+  font-size: 12px;
+}
+
+.summary-card small {
+  color: #968c9f;
+  font-size: 11px;
+}
+
+.attendance-card,
+.advances-card,
+.bonuses-card,
+.overtime-card,
+.payroll-card {
+  margin-bottom: 20px;
+}
+
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.attendance-table th {
+  padding: 14px 18px;
+  background: #f5faf7;
+  color: #7d9389;
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.attendance-table td {
+  padding: 15px 18px;
+  border-top: 1px solid #eaf1ed;
+  color: #5d6c65;
+  font-size: 13px;
+}
+
+.attendance-table tbody tr:hover {
+  background: #f9fcfa;
+}
+
+.attendance-status {
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.attendance-present {
+  background: #dff1e7;
+  color: #4f8067;
+}
+
+.attendance-absent {
+  background: #f8dfdf;
+  color: #a36e6e;
+}
+
+.attendance-half {
+  background: #f6ecd7;
+  color: #9a7d4f;
+}
+
+.attendance-leave {
+  background: #e9e5f2;
+  color: #766b8b;
+}
+
+
+/* =========================================================
+   ADVANCES
+   SKY / SOFT BLUE
+   ========================================================= */
+
+.advances-page .page-eyebrow {
+  color: #7195af !important;
+}
+
+.advances-page .primary-button {
+  background: #a9c9dd;
+  color: #38576b;
+}
+
+.advances-page .primary-button:hover {
+  background: #9dbfd5;
+}
+
+.advances-info {
+  margin-bottom: 22px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: #edf6fa;
+  border: 1px solid #d9e9f0;
+}
+
+.advances-info h3 {
+  margin: 0 0 5px;
+  color: #506c7e;
+  font-size: 15px;
+}
+
+.advances-info p {
+  margin: 0;
+  color: #7c929e;
+  font-size: 13px;
+}
+
+.advance-status {
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.advance-pending {
+  background: #fff0d8;
+  color: #9b784d;
+}
+
+.advance-deducted {
+  background: #def1e6;
+  color: #56806a;
+}
+
+.advance-cancelled {
+  background: #f1e9ed;
+  color: #8b7b85;
+}
+
+
+/* =========================================================
+   BONUSES
+   LAVENDER / SPARKLE
+   ========================================================= */
+
+.bonuses-page .page-eyebrow {
+  color: #9a7ca1 !important;
+}
+
+.bonuses-page .primary-button {
+  background: #d7b8dc;
+  color: #59455e;
+}
+
+.bonuses-page .primary-button:hover {
+  background: #cfaed5;
+}
+
+.bonus-type {
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.bonus-percentage {
+  background: #eee2f3;
+  color: #795e82;
+}
+
+.bonus-fixed {
+  background: #f8e3d8;
+  color: #956d5c;
+}
+
+
+/* =========================================================
+   OVERTIME
+   PEACH + SKY
+   ========================================================= */
+
+.overtime-page .page-eyebrow {
+  color: #7f8fa4 !important;
+}
+
+.overtime-page .primary-button {
+  background: #b8cee0;
+  color: #405c70;
+}
+
+.overtime-page .primary-button:hover {
+  background: #aac4d9;
+}
+
+.overtime-info {
+  margin-bottom: 22px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: #edf4f9;
+  border: 1px solid #dce8f0;
+}
+
+.overtime-info h3 {
+  margin: 0 0 5px;
+  color: #536c7e;
+  font-size: 15px;
+}
+
+.overtime-info p {
+  margin: 0;
+  color: #7c8f9d;
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   PAYROLL
+   ========================================================= */
+
+.payroll-page .page-eyebrow {
+  color: #8d789a !important;
+}
+
+.payroll-page .primary-button {
+  background: #d8b5dc;
+  color: #55415c;
+}
+
+.payroll-page .primary-button:hover {
+  background: #cda9d3;
+}
+
+.payroll-info {
+  margin-bottom: 22px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: #f4edf6;
+  border: 1px solid #e7dce9;
+}
+
+.payroll-info h3 {
+  margin: 0 0 5px;
+  color: #5f5066;
+  font-size: 15px;
+}
+
+.payroll-info p {
+  margin: 0;
+  color: #8d8293;
+  font-size: 13px;
+}
+
+.payroll-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.payroll-status.finalized {
+  background: #dff1e7;
+  color: #4f8067;
+}
+
+.payroll-status.draft {
+  background: #fff0d8;
+  color: #99774c;
+}
+
+.finalize-button {
+  border: none;
+  padding: 7px 10px;
+  border-radius: 9px;
+  background: #dff0e6;
+  color: #527965;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.finalize-button:hover {
+  background: #d1e9dc;
+}
+
+.completed-label {
+  color: #679078;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.payroll-formula {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.formula-box {
+  padding: 18px;
+  border-radius: 14px;
+  background: #faf6fb;
+  border: 1px solid #eee5f0;
+}
+
+.formula-box span {
+  display: block;
+  margin-bottom: 7px;
+  color: #938899;
+  font-size: 12px;
+}
+
+.formula-box strong {
+  color: #4a3e51;
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   SALARY SLIPS
+   ========================================================= */
+
+.salary-slips-page {
+  max-width: 1100px;
+}
+
+.salary-slips-page .page-eyebrow {
+  color: #8f789a !important;
+}
+
+.salary-slip-selector {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 16px 18px;
+  border-radius: 15px;
+  background: #f4edf6;
+  border: 1px solid #e6dce9;
+}
+
+.salary-slip-selector label {
+  color: #65566c;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.salary-slip-selector select {
+  min-width: 260px;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid #ddd1e2;
+  border-radius: 10px;
+  background: white;
+  color: #55475c;
+}
+
+.salary-slip {
+  background: white;
+  border: 1px solid #e8dfe9;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(82, 64, 92, 0.06);
+  overflow: hidden;
+}
+
+.salary-slip-header {
+  padding: 28px;
+  background: #f5edf7;
+  border-bottom: 1px solid #e7dce9;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.salary-slip-header h2 {
+  margin: 4px 0 6px;
+  color: #493b50;
+  font-size: 25px;
+}
+
+.salary-slip-header p {
+  margin: 0;
+  color: #8c8191;
+  font-size: 12px;
+}
+
+.salary-slip-meta {
+  text-align: right;
+}
+
+.salary-slip-meta strong {
+  display: block;
+  color: #55455d;
+  font-size: 13px;
+}
+
+.salary-slip-meta span {
+  color: #968b9b;
+  font-size: 11px;
+}
+
+.salary-slip-body {
+  padding: 28px;
+}
+
+.salary-slip-employee {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.salary-slip-employee .employee-avatar {
+  width: 48px;
+  height: 48px;
+}
+
+.salary-slip-employee h3 {
+  margin: 0 0 4px;
+  color: #45374d;
+  font-size: 19px;
+}
+
+.salary-slip-employee p {
+  margin: 0;
+  color: #928697;
+  font-size: 12px;
+}
+
+.salary-slip-section {
+  margin-top: 24px;
+}
+
+.salary-slip-section h3 {
+  margin: 0 0 12px;
+  color: #594b61;
+  font-size: 15px;
+}
+
+.salary-slip-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 11px 0;
+  border-bottom: 1px solid #f0e9f1;
+}
+
+.salary-slip-row span {
+  color: #827789;
+  font-size: 13px;
+}
+
+.salary-slip-row strong {
+  color: #4b3e52;
+  font-size: 13px;
+}
+
+.salary-slip-total {
+  margin-top: 18px;
+  padding: 20px;
+  border-radius: 15px;
+  background: #e9def1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.salary-slip-total span {
+  color: #6d5c73;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.salary-slip-total strong {
+  color: #49394f;
+  font-size: 23px;
+}
+
+.salary-slip-footer {
+  padding: 18px 28px;
+  border-top: 1px solid #eee7ef;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.salary-slip-footer p {
+  margin: 0;
+  color: #9a909e;
+  font-size: 11px;
+}
+
+.print-button {
+  border: none;
+  background: #e5d4e9;
+  color: #5d4865;
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.print-button:hover {
+  background: #dbc8e0;
+}
+
+
+/* =========================================================
+   SETTINGS
+   ========================================================= */
+
+.settings-page {
+  max-width: 1100px;
+}
+
+.settings-page .page-eyebrow {
+  color: #8d7897 !important;
+}
+
+.settings-card {
+  margin-bottom: 18px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.settings-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.settings-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.settings-card-header h2 {
+  margin: 0 0 4px;
+  color: #493b50;
+  font-size: 18px;
+}
+
+.settings-card-header p {
+  margin: 0;
+  color: #968b9b;
+  font-size: 12px;
+}
+
+.purple-icon {
+  background: #e8dcef;
+}
+
+.danger-icon {
+  background: #fae1e1;
+}
+
+.settings-page .form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.settings-page .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.settings-page .form-group label {
+  color: #67586b;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.settings-page .form-group input,
+.settings-page .form-group select,
+.settings-page .form-group textarea {
+  width: 100%;
+  border: 1px solid #e4d9df;
+  border-radius: 11px;
+  padding: 11px 12px;
+  background: #fffafa;
+  color: #4b3b52;
+  transition: 0.2s ease;
+}
+
+.settings-page .form-group input,
+.settings-page .form-group select {
+  height: 42px;
+}
+
+.settings-page .form-group textarea {
+  resize: vertical;
+  min-height: 85px;
+}
+
+.settings-page .form-group input:focus,
+.settings-page .form-group select:focus,
+.settings-page .form-group textarea:focus {
+  border-color: #caa7ce;
+  box-shadow: 0 0 0 3px rgba(202, 167, 206, 0.13);
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.account-preview {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 15px;
+  background: #faf6fb;
+  border: 1px solid #eee6f0;
+}
+
+.settings-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #dba5d8;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.account-details {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.account-details strong {
+  color: #4c3e53;
+  font-size: 14px;
+}
+
+.account-details span,
+.account-details small {
+  color: #948998;
+  font-size: 11px;
+}
+
+.account-status {
+  margin-left: auto;
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: #e0f1e8;
+  color: #527967;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.settings-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.setting-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 0;
+  border-top: 1px solid #eee7ef;
+  cursor: pointer;
+}
+
+.setting-option:first-child {
+  border-top: none;
+}
+
+.setting-option strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #504253;
+  font-size: 13px;
+}
+
+.setting-option span {
+  display: block;
+  color: #958a9b;
+  font-size: 11px;
+}
+
+.setting-option input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #b98fc0;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.payroll-options {
+  margin-top: 18px;
+}
+
+.system-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.system-info-grid > div {
+  padding: 15px;
+  border-radius: 13px;
+  background: #faf6fb;
+  border: 1px solid #eee6f0;
+}
+
+.system-info-grid span {
+  display: block;
+  margin-bottom: 5px;
+  color: #988c9d;
+  font-size: 11px;
+}
+
+.system-info-grid strong {
+  color: #4d4053;
+  font-size: 13px;
+}
+
+.danger-card {
+  border-color: #eddede;
+  background: #fffafa;
+}
+
+.danger-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 17px;
+  border-radius: 13px;
+  background: #fff4f4;
+  border: 1px solid #f0dddd;
+}
+
+.danger-content strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #765050;
+  font-size: 13px;
+}
+
+.danger-content span {
+  color: #a18484;
+  font-size: 11px;
+}
+
+.danger-note {
+  color: #a76f6f !important;
+  white-space: nowrap;
+}
+
+.settings-save-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 22px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: #f1e8f3;
+  border: 1px solid #e5d9e8;
+}
+
+.settings-save-bar strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #594a60;
+  font-size: 13px;
+}
+
+.settings-save-bar span {
+  color: #948898;
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   MODALS
+   ========================================================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background: rgba(60, 45, 60, 0.28);
+  backdrop-filter: blur(5px);
+}
+
+.employee-modal,
+.modal-content {
+  width: min(650px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+
+  background: #fffdfd;
+  border: 1px solid #eadfe5;
+  border-radius: 24px;
+
+  box-shadow: 0 20px 60px rgba(70, 50, 70, 0.15);
+}
+
+.modal-header {
+  padding: 24px 28px 20px;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+
+  border-bottom: 1px solid #eee5e9;
+}
+
+.modal-header h2 {
+  margin: 0 0 5px;
+  color: #45364f;
+  font-size: 20px;
+}
+
+.modal-header p {
+  margin: 0;
+  color: #968997;
+  font-size: 12px;
+}
+
+.modal-close {
+  width: 34px;
+  height: 34px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #f7edf0;
+  color: #806f7b;
+
+  font-size: 20px;
+}
+
+.modal-close:hover {
+  background: #f0dfe4;
+}
+
+.modal-content form,
+.employee-modal form {
+  padding: 24px 28px 28px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-group label {
+  color: #67586b;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  border: 1px solid #e4d9df;
+  border-radius: 10px;
+  padding: 0 12px;
+  background: #fffafa;
+  color: #4b3b52;
+}
+
+.form-group input,
+.form-group select {
+  height: 42px;
+}
+
+.form-group textarea {
+  padding-top: 11px;
+  padding-bottom: 11px;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #caa7ce;
+  box-shadow: 0 0 0 3px rgba(202, 167, 206, 0.13);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+
+/* =========================================================
+   FILTER / TOOLBAR
+   ========================================================= */
+
+.page-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 18px;
+}
+
+.toolbar-left,
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.refresh-button {
+  border: 1px solid #e5dce7;
+  background: #fffdfd;
+  color: #695a70;
+  padding: 9px 13px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.refresh-button:hover {
+  background: #f7f0f8;
+}
+
+.filter-input,
+.filter-select {
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid #e4d9e2;
+  border-radius: 10px;
+  background: white;
+  color: #55475c;
+}
+
+
+/* =========================================================
+   TABLE CARD
+   ========================================================= */
+
+.records-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #eadfe7;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.records-card-header {
+  padding: 20px 22px;
+  border-bottom: 1px solid #eee7ef;
+}
+
+.records-card-header h2 {
+  margin: 0 0 4px;
+  color: #4b3d52;
+  font-size: 18px;
+}
+
+.records-card-header p {
+  margin: 0;
+  color: #978c9c;
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   SMALL BADGES
+   ========================================================= */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.badge-success {
+  background: #e0f1e8;
+  color: #527967;
+}
+
+.badge-warning {
+  background: #fff0d8;
+  color: #97764d;
+}
+
+.badge-danger {
+  background: #fae3e3;
+  color: #a06b6b;
+}
+
+.badge-neutral {
+  background: #f1e9ed;
+  color: #837681;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .attendance-summary,
+  .advances-summary,
+  .bonuses-summary,
+  .overtime-summary,
+  .payroll-summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .employee-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .employees-header,
+  .employees-card-header,
+  .page-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .employee-filters {
+    width: 100%;
+  }
+
+  .employee-filters input {
+    flex: 1;
+    width: auto;
+  }
+
+  .system-info-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .payroll-formula {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .page {
+    padding-bottom: 25px;
+  }
+
+  .page-heading h1,
+  .employees-header h1,
+  .page-top h1 {
+    font-size: 28px;
+  }
+
+  .stats-grid,
+  .attendance-summary,
+  .advances-summary,
+  .bonuses-summary,
+  .overtime-summary,
+  .payroll-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .payroll-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .activity-item {
+    grid-template-columns: 38px 1fr;
+  }
+
+  .activity-item > span {
+    grid-column: 2;
+  }
+
+  .form-grid,
+  .settings-page .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full-width {
+    grid-column: auto;
+  }
+
+  .employee-filters {
+    flex-direction: column;
+  }
+
+  .employee-filters input {
+    width: 100%;
+  }
+
+  .system-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-save-bar,
+  .danger-content {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .danger-note {
+    white-space: normal;
+  }
+
+  .account-status {
+    margin-left: auto;
+  }
+
+  .salary-slip-header {
+    flex-direction: column;
+  }
+
+  .salary-slip-meta {
+    text-align: left;
+  }
+
+  .salary-slip-selector {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .salary-slip-selector select {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .salary-slip-body {
+    padding: 20px;
+  }
+
+  .salary-slip-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .modal-overlay {
+    padding: 12px;
+  }
+
+  .modal-content,
+  .employee-modal {
+    border-radius: 18px;
+  }
+
+  .modal-header,
+  .modal-content form,
+  .employee-modal form {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+
+/* =========================================================
+   PRINT — SALARY SLIP
+   ========================================================= */
+
+@media print {
+
+  body {
+    background: white !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .salary-slip,
+  .salary-slip * {
+    visibility: visible;
+  }
+
+  .salary-slip {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    max-width: none;
+
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .salary-slip-selector,
+  .salary-slip-footer,
+  .print-button {
+    display: none !important;
+  }
+
+  .salary-slip-header {
+    background: white;
+  }
+
+  .salary-slip-body {
+    padding: 20px;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+}
+
+
+/* =========================================================
+   PAYFLOW — FINAL REFINEMENT OVERRIDES
+   Keeps the existing design and fixes spacing, hierarchy,
+   missing component classes, tables, modals and printing.
+   ========================================================= */
+
+/* ---------- GLOBAL REFINEMENT ---------- */
+
+.page {
+  max-width: 1320px;
+}
+
+.dashboard-card {
+  overflow: hidden;
+}
+
+.page-heading {
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.page-heading > div:first-child {
+  min-width: 0;
+}
+
+.page-heading h1 {
+  margin-bottom: 6px;
+}
+
+.primary-button,
+.secondary-button,
+.refresh-button,
+.table-action-button,
+.finalize-button,
+.print-button {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.primary-button:disabled,
+.secondary-button:disabled,
+.refresh-button:disabled,
+.table-action-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---------- SHARED SECTION HEADINGS ---------- */
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.section-heading h2 {
+  margin: 0 0 5px;
+  color: #493b50;
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.section-heading p {
+  margin: 0;
+  color: #978c9c;
+  font-size: 12px;
+}
+
+/* ---------- ERROR / EMPTY STATES ---------- */
+
+.error-banner {
+  margin-bottom: 18px;
+  padding: 12px 15px;
+  border: 1px solid #edcccc;
+  border-radius: 12px;
+  background: #faeded;
+  color: #925858;
+  font-size: 13px;
+}
+
+.empty-state {
+  padding: 54px 24px;
+  text-align: center;
+  color: #958a9b;
+}
+
+.empty-state-icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: #f2e8f4;
+  font-size: 22px;
+}
+
+.empty-state h3 {
+  margin: 0 0 6px;
+  color: #53445b;
+  font-size: 16px;
+}
+
+.empty-state p {
+  max-width: 440px;
+  margin: 0 auto 16px;
+  color: #958a9b;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* ---------- TOOLBARS ---------- */
+
+.page-toolbar {
+  margin-bottom: 16px;
+}
+
+.page-toolbar .toolbar-left,
+.page-toolbar .toolbar-right {
+  flex-wrap: wrap;
+}
+
+.filter-input,
+.filter-select {
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+  border-color: #caa7ce;
+  box-shadow: 0 0 0 3px rgba(202, 167, 206, 0.12);
+}
+
+/* ---------- SUMMARY CARDS ---------- */
+
+.attendance-summary,
+.advances-summary,
+.bonuses-summary,
+.overtime-summary,
+.payroll-summary-grid {
+  gap: 14px;
+}
+
+.summary-card {
+  min-height: 118px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 18px 20px;
+}
+
+.summary-card strong {
+  font-size: 26px;
+  line-height: 1.15;
+}
+
+/* ---------- ATTENDANCE ---------- */
+
+.attendance-page .dashboard-card,
+.advances-page .dashboard-card,
+.bonuses-page .dashboard-card,
+.overtime-page .dashboard-card,
+.payroll-page .dashboard-card {
+  margin-bottom: 18px;
+}
+
+.attendance-card {
+  overflow: hidden;
+}
+
+.attendance-table {
+  min-width: 760px;
+}
+
+.attendance-table th {
+  padding: 13px 18px;
+}
+
+.attendance-table td {
+  padding: 13px 18px;
+  vertical-align: middle;
+}
+
+.attendance-table tbody tr {
+  height: 66px;
+}
+
+.attendance-page .employee-cell,
+.attendance-page .employee-name-cell {
+  min-width: 210px;
+}
+
+.attendance-page .employee-avatar.small {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+/* ---------- ADVANCES ---------- */
+
+.advances-card {
+  overflow: hidden;
+}
+
+.advances-page .data-table {
+  min-width: 820px;
+}
+
+.advances-page .data-table td {
+  vertical-align: middle;
+}
+
+.advances-page .employee-cell {
+  min-width: 190px;
+}
+
+.advances-page .employee-avatar.small,
+.bonuses-page .employee-avatar.small,
+.overtime-page .employee-avatar.small,
+.payroll-page .employee-avatar.small {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.advance-action-group {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+
+.advance-action-group button {
+  border: 1px solid #e4dbe7;
+  border-radius: 8px;
+  padding: 6px 9px;
+  background: #fff;
+  color: #66586d;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.advance-action-group button:hover {
+  background: #f8f2f9;
+}
+
+.advance-action-group .danger-action {
+  color: #a66d6d;
+}
+
+/* ---------- BONUSES ---------- */
+
+.bonuses-card {
+  overflow: hidden;
+}
+
+.bonuses-page .data-table {
+  min-width: 780px;
+}
+
+.bonuses-page .data-table td {
+  vertical-align: middle;
+}
+
+.bonuses-page .employee-cell {
+  min-width: 190px;
+}
+
+.bonus-value {
+  color: #514052;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ---------- OVERTIME ---------- */
+
+.overtime-card {
+  overflow: hidden;
+}
+
+.overtime-page .data-table {
+  min-width: 720px;
+}
+
+.overtime-page .data-table td {
+  vertical-align: middle;
+}
+
+.overtime-page .data-table td:nth-child(3),
+.overtime-page .data-table td:nth-child(4),
+.overtime-page .data-table td:nth-child(5) {
+  font-variant-numeric: tabular-nums;
+}
+
+.overtime-amount {
+  color: #4b3d52;
+  font-weight: 700;
+}
+
+/* ---------- PAYROLL ---------- */
+
+.payroll-card {
+  overflow: hidden;
+}
+
+.payroll-page .data-table {
+  min-width: 1050px;
+}
+
+.payroll-page .data-table td {
+  vertical-align: middle;
+}
+
+.payroll-page .employee-cell {
+  min-width: 185px;
+}
+
+.payroll-page .net-salary {
+  color: #4f3e56;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.payroll-page .deduction-amount {
+  color: #a16e72;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.payroll-page .table-secondary {
+  color: #9b909f;
+  font-size: 11px;
+}
+
+.payroll-page .status-badge {
+  white-space: nowrap;
+}
+
+.payroll-page .status-finalized {
+  background: #dff1e7;
+  color: #4f8067;
+}
+
+.payroll-page .status-draft {
+  background: #fff0d8;
+  color: #99774c;
+}
+
+.table-action-button {
+  border: 1px solid #ded3e2;
+  border-radius: 9px;
+  padding: 7px 10px;
+  background: #f8f2f9;
+  color: #66536c;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.table-action-button:hover {
+  background: #eee3f1;
+  border-color: #d5c5da;
+}
+
+.payroll-info-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  margin-bottom: 18px;
+  background: #f7f0f8;
+  border-color: #e8dcea;
+}
+
+.payroll-info-card .info-icon {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  background: #eadcf1;
+}
+
+.payroll-info-card h3 {
+  margin: 1px 0 5px;
+  color: #57475e;
+  font-size: 14px;
+}
+
+.payroll-info-card p {
+  margin: 0;
+  color: #8c8192;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.payroll-breakdown-card {
+  margin-top: 18px;
+}
+
+.formula-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.formula-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 13px 0;
+  border-bottom: 1px solid #eee5f0;
+}
+
+.formula-line:first-child {
+  padding-top: 0;
+}
+
+.formula-line:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.formula-line span {
+  margin: 0;
+}
+
+.formula-line strong {
+  text-align: right;
+}
+
+/* ---------- SALARY SLIPS ---------- */
+
+.salary-slips-page {
+  max-width: 1180px;
+}
+
+.salary-slip-selector {
+  box-shadow: none;
+}
+
+.salary-slip {
+  overflow: hidden;
+}
+
+.salary-slip-body {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.salary-slip-row:last-child {
+  border-bottom: none;
+}
+
+.salary-slip-total {
+  margin-top: 20px;
+}
+
+.salary-slip-footer {
+  background: #fffafb;
+}
+
+.salary-slip-page-note {
+  color: #948898;
+  font-size: 11px;
+}
+
+/* ---------- MODAL REFINEMENT ---------- */
+
+.modal {
+  width: min(650px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fffdfd;
+  border: 1px solid #eadfe5;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(70, 50, 70, 0.15);
+}
+
+.modal form {
+  padding: 24px 28px 28px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.payroll-modal {
+  width: min(590px, 100%);
+}
+
+.payroll-modal .form-grid {
+  gap: 16px;
+}
+
+.payroll-modal-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 13px 14px;
+  border: 1px solid #e7dce9;
+  border-radius: 12px;
+  background: #f8f3f9;
+}
+
+.payroll-modal-note > span {
+  flex: 0 0 auto;
+}
+
+.payroll-modal-note p {
+  margin: 0;
+  color: #827687;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+/* ---------- GENERIC EMPLOYEE CELL ---------- */
+
+.employee-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 170px;
+}
+
+.employee-cell > div:last-child {
+  min-width: 0;
+}
+
+.employee-cell strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #4b3d52;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+.employee-cell span {
+  display: block;
+  color: #9a8f9e;
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+.employee-avatar.small {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+/* ---------- STATUS VARIANTS ---------- */
+
+.status-finalized {
+  background: #dff1e7;
+  color: #4f8067;
+}
+
+.status-draft {
+  background: #fff0d8;
+  color: #99774c;
+}
+
+.status-present {
+  background: #dff1e7;
+  color: #4f8067;
+}
+
+.status-absent {
+  background: #f8dfdf;
+  color: #a36e6e;
+}
+
+.status-half-day {
+  background: #f6ecd7;
+  color: #9a7d4f;
+}
+
+.status-leave {
+  background: #e9e5f2;
+  color: #766b8b;
+}
+
+/* ---------- GENERIC CARD HEADER ALIGNMENT ---------- */
+
+.dashboard-card > .section-heading,
+.records-card > .records-card-header {
+  margin-bottom: 0;
+}
+
+.dashboard-card > .section-heading {
+  padding-bottom: 2px;
+}
+
+/* ---------- FORM REFINEMENT ---------- */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder,
+.filter-input::placeholder {
+  color: #b0a5b2;
+}
+
+.form-group input:disabled,
+.form-group select:disabled,
+.form-group textarea:disabled {
+  background: #f7f3f6;
+  color: #a49aa5;
+  cursor: not-allowed;
+}
+
+/* ---------- SETTINGS REFINEMENT ---------- */
+
+.settings-page .settings-card {
+  padding: 22px;
+}
+
+.settings-page .settings-card-header {
+  margin-bottom: 18px;
+}
+
+.settings-page .setting-option {
+  min-height: 62px;
+}
+
+.settings-page .settings-save-bar {
+  position: sticky;
+  bottom: 14px;
+  z-index: 10;
+  box-shadow: 0 8px 24px rgba(82, 64, 92, 0.08);
+}
+
+/* ---------- SMALL SCREEN REFINEMENT ---------- */
+
+@media (max-width: 900px) {
+  .page-heading,
+  .section-heading {
+    align-items: flex-start;
+  }
+
+  .section-heading {
+    flex-direction: column;
+  }
+
+  .page-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .toolbar-left,
+  .toolbar-right {
+    width: 100%;
+  }
+
+  .filter-input,
+  .filter-select {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .payroll-info-card {
+    flex-direction: row;
+  }
+
+  .formula-line {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .formula-line strong {
+    text-align: left;
+  }
+}
+
+@media (max-width: 650px) {
+  .page-heading {
+    gap: 14px;
+  }
+
+  .page-heading .primary-button {
+    width: 100%;
+  }
+
+  .summary-card {
+    min-height: 105px;
+  }
+
+  .dashboard-card,
+  .employees-card {
+    border-radius: 16px;
+    padding: 18px;
+  }
+
+  .attendance-page .dashboard-card,
+  .advances-page .dashboard-card,
+  .bonuses-page .dashboard-card,
+  .overtime-page .dashboard-card,
+  .payroll-page .dashboard-card {
+    padding: 16px;
+  }
+
+  .payroll-info-card {
+    padding: 16px;
+  }
+
+  .modal {
+    max-height: calc(100vh - 24px);
+    border-radius: 18px;
+  }
+
+  .modal form {
+    padding: 20px;
+  }
+
+  .modal-footer {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .modal-footer .primary-button,
+  .modal-footer .secondary-button {
+    width: 100%;
+  }
+
+  .settings-page .settings-card {
+    padding: 18px;
+  }
+
+  .settings-page .settings-save-bar {
+    position: static;
+  }
+}
+
+/* =========================================================
+   PRINT — CLEAN SINGLE-PAGE SALARY SLIP
+   ========================================================= */
+
+@media print {
+  html,
+  body {
+    width: 100%;
+    min-height: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .salary-slip,
+  .salary-slip * {
+    visibility: visible !important;
+  }
+
+  .salary-slip {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .salary-slip-header,
+  .salary-slip-body,
+  .salary-slip-footer {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .salary-slip-header {
+    padding: 18px 0 !important;
+    background: #fff !important;
+  }
+
+  .salary-slip-body {
+    max-width: none !important;
+    padding: 16px 0 !important;
+  }
+
+  .salary-slip-employee {
+    margin-bottom: 18px !important;
+  }
+
+  .salary-slip-section {
+    margin-top: 15px !important;
+  }
+
+  .salary-slip-row {
+    padding: 7px 0 !important;
+  }
+
+  .salary-slip-total {
+    margin-top: 14px !important;
+    padding: 13px 16px !important;
+  }
+
+  .salary-slip-footer,
+  .salary-slip-selector,
+  .print-button {
+    display: none !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+}
+
+
+/* =========================================================
+   PAYFLOW FINAL PAGE REFINEMENT
+   Exact selectors for Attendance / Advances / Bonuses JSX
+   ========================================================= */
+
+/* ---------- SHARED PAGE STRUCTURE ---------- */
+.attendance-page,
+.advances-page,
+.bonuses-page {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  color: #51465a;
+}
+
+.attendance-page *,
+.advances-page *,
+.bonuses-page * {
+  box-sizing: border-box;
+}
+
+.attendance-heading,
+.advances-header,
+.bonuses-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.attendance-heading h1,
+.advances-header h1,
+.bonuses-header h1 {
+  margin: 5px 0 7px;
+  color: #40384f;
+  font-size: 32px;
+  line-height: 1.12;
+  letter-spacing: -0.8px;
+}
+
+.attendance-heading .page-description,
+.advances-header .page-subtitle,
+.bonuses-header .page-subtitle {
+  margin: 0;
+  color: #9a8ea3;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.attendance-page .page-eyebrow,
+.advances-eyebrow,
+.bonuses-eyebrow {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+}
+
+.attendance-page .page-eyebrow {
+  color: #78a38f !important;
+}
+
+.advances-eyebrow {
+  color: #7797ab;
+}
+
+.bonuses-eyebrow {
+  color: #9b7aa2;
+}
+
+.attendance-add-button,
+.advances-button,
+.bonuses-button {
+  flex: 0 0 auto;
+  min-height: 42px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 7px 18px rgba(100, 80, 110, 0.08);
+}
+
+.attendance-add-button {
+  background: #afd8c4 !important;
+  color: #365c4c !important;
+}
+
+.advances-button {
+  background: #acd0e4 !important;
+  color: #3d5d70 !important;
+}
+
+.bonuses-button {
+  background: #d9b9df !important;
+  color: #5e4764 !important;
+}
+
+.attendance-add-button:hover,
+.advances-button:hover,
+.bonuses-button:hover {
+  transform: translateY(-1px);
+  filter: brightness(0.98);
+}
+
+/* ---------- SHARED ALERTS ---------- */
+.attendance-page .page-alert,
+.advances-page .error-message,
+.bonuses-page .error-message {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding: 13px 15px;
+  border-radius: 12px;
+  border: 1px solid #efd6d8;
+  background: #fff5f5;
+  color: #8d666b;
+  font-size: 13px;
+}
+
+.attendance-page .page-alert > div {
+  flex: 1;
+}
+
+.attendance-page .page-alert strong {
+  display: block;
+  margin-bottom: 2px;
+  color: #76555a;
+}
+
+.attendance-page .page-alert p {
+  margin: 0;
+  color: #9a7d81;
+}
+
+.attendance-page .page-alert button {
+  border: 0;
+  background: transparent;
+  color: #76555a;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ---------- SHARED STAT CARDS ---------- */
+.attendance-page .stats-grid,
+.advances-page .advances-summary,
+.bonuses-page .bonuses-summary {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.attendance-page .stats-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.advances-page .advances-summary {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.bonuses-page .bonuses-summary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.attendance-page .stat-card,
+.advances-page .advances-summary-card,
+.bonuses-page .bonus-summary-card {
+  min-width: 0;
+  min-height: 112px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid rgba(100, 80, 110, 0.07);
+  border-radius: 17px;
+  box-shadow: 0 8px 24px rgba(91, 74, 101, 0.045);
+}
+
+.attendance-page .stat-card.mint {
+  background: #dff1e8;
+}
+
+.attendance-page .stat-card.peach {
+  background: #f6e1d6;
+}
+
+.attendance-page .stat-card.lavender {
+  background: #e9def0;
+}
+
+.attendance-page .stat-card.sky {
+  background: #dcebf4;
+}
+
+.advances-summary-card.advances-sky {
+  background: #dcebf5;
+}
+
+.advances-summary-card.advances-yellow {
+  background: #f7ecd6;
+}
+
+.advances-summary-card.advances-mint {
+  background: #dff1e8;
+}
+
+.advances-summary-card.advances-peach {
+  background: #f5dfd5;
+}
+
+.bonus-summary-card.bonus-yellow {
+  background: #f7ecd7;
+}
+
+.bonus-summary-card.bonus-lavender {
+  background: #e9def0;
+}
+
+.bonus-summary-card.bonus-peach {
+  background: #f5dfd5;
+}
+
+.attendance-page .stat-icon,
+.advances-page .advances-icon,
+.bonuses-page .bonus-icon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  background: rgba(255,255,255,0.58);
+  color: #66566e;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.attendance-page .stat-content,
+.advances-page .advances-summary-card > div:last-child,
+.bonuses-page .bonus-summary-card > div:last-child {
+  min-width: 0;
+}
+
+.attendance-page .stat-label,
+.advances-page .advances-summary-card span,
+.bonuses-page .bonus-summary-card span {
+  display: block;
+  margin-bottom: 5px;
+  color: #766b80;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.attendance-page .stat-content strong,
+.advances-page .advances-summary-card strong,
+.bonuses-page .bonus-summary-card strong {
+  display: block;
+  margin: 0 0 4px;
+  color: #42394b;
+  font-size: 21px;
+  line-height: 1.15;
+  font-weight: 750;
+}
+
+.attendance-page .stat-content small,
+.advances-page .advances-summary-card small,
+.bonuses-page .bonus-summary-card small {
+  display: block;
+  color: #958a9c;
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+/* ---------- ATTENDANCE ---------- */
+.attendance-records-card {
+  overflow: hidden;
+  margin-bottom: 20px;
+  padding: 0 !important;
+  border: 1px solid #eee5ef;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(82, 65, 92, 0.055);
+}
+
+.attendance-records-card .section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px 24px 17px;
+}
+
+.attendance-records-card .section-header h2 {
+  margin: 0 0 5px;
+  color: #493d52;
+  font-size: 20px;
+}
+
+.attendance-records-card .section-header p {
+  margin: 0;
+  color: #a095a6;
+  font-size: 12px;
+}
+
+.attendance-page .secondary-button {
+  min-height: 38px;
+  padding: 0 13px;
+  border: 1px solid #e5dce7;
+  border-radius: 10px;
+  background: #fff;
+  color: #66576d;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.attendance-page .attendance-filters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 24px 17px;
+}
+
+.attendance-page .search-box {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  max-width: 390px;
+}
+
+.attendance-page .search-box > span {
+  position: absolute;
+  top: 50%;
+  left: 13px;
+  z-index: 1;
+  transform: translateY(-50%);
+  color: #9a8fa0;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.attendance-page .search-box input,
+.attendance-page .attendance-filters select {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #e6dfe8;
+  border-radius: 10px;
+  outline: none;
+  background: #fff;
+  color: #5d5262;
+  font: inherit;
+  font-size: 12px;
+}
+
+.attendance-page .search-box input {
+  padding: 0 13px 0 36px;
+}
+
+.attendance-page .attendance-filters select {
+  width: 150px;
+  padding: 0 12px;
+}
+
+.attendance-page .search-box input:focus,
+.attendance-page .attendance-filters select:focus {
+  border-color: #c9a9d0;
+  box-shadow: 0 0 0 3px rgba(201, 169, 208, 0.14);
+}
+
+.attendance-page .table-wrapper,
+.advances-page .table-wrapper,
+.bonuses-page .table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.attendance-page .attendance-table,
+.advances-page .advances-table,
+.bonuses-page .bonuses-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.attendance-page .attendance-table th,
+.advances-page .advances-table th,
+.bonuses-page .bonuses-table th {
+  height: 45px;
+  padding: 0 18px;
+  border-bottom: 1px solid #edf0ee;
+  background: #f7faf8;
+  color: #84918b;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: .65px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.attendance-page .attendance-table td {
+  height: 73px;
+  padding: 10px 18px;
+  border-bottom: 1px solid #f0ebf0;
+  color: #655c68;
+  font-size: 12px;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.attendance-page .attendance-table tbody tr:last-child td,
+.advances-page .advances-table tbody tr:last-child td,
+.bonuses-page .bonuses-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.attendance-page .attendance-table tbody tr:hover,
+.advances-page .advances-table tbody tr:hover,
+.bonuses-page .bonuses-table tbody tr:hover {
+  background: #fcfafc;
+}
+
+.attendance-page .employee-cell,
+.advances-page .advance-employee,
+.bonuses-page .bonus-employee {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 190px;
+}
+
+.attendance-page .employee-cell > div:last-child,
+.advances-page .advance-employee > div:last-child,
+.bonuses-page .bonus-employee > div:last-child {
+  min-width: 0;
+}
+
+.attendance-page .employee-cell strong,
+.advances-page .advance-employee strong,
+.bonuses-page .bonus-employee strong {
+  display: block;
+  margin: 0 0 4px;
+  color: #473b50;
+  font-size: 12px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.attendance-page .employee-cell span,
+.advances-page .advance-employee span,
+.bonuses-page .bonus-employee span {
+  display: block;
+  color: #9b8e9f;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.attendance-page .employee-avatar,
+.advances-page .advance-avatar,
+.bonuses-page .bonus-avatar {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: #f1d6cc;
+  color: #805e61;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.attendance-page .attendance-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.attendance-page .status-dot,
+.advances-page .status-dot {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  border-radius: 50%;
+}
+
+.attendance-page .attendance-status.present {
+  background: #e0f2e8;
+  color: #527b67;
+}
+
+.attendance-page .attendance-status.present .status-dot {
+  background: #75a88e;
+}
+
+.attendance-page .attendance-status.absent {
+  background: #f7e0e0;
+  color: #9a696d;
+}
+
+.attendance-page .attendance-status.absent .status-dot {
+  background: #c78989;
+}
+
+.attendance-page .attendance-status.half-day {
+  background: #f7ecd9;
+  color: #92744c;
+}
+
+.attendance-page .attendance-status.half-day .status-dot {
+  background: #c2a066;
+}
+
+.attendance-page .attendance-status.leave {
+  background: #ebe5f2;
+  color: #756887;
+}
+
+.attendance-page .attendance-status.leave .status-dot {
+  background: #9a88ac;
+}
+
+.attendance-page .attendance-table td:nth-child(6) strong {
+  color: #4e6458;
+  font-size: 12px;
+}
+
+.attendance-page .notes-cell {
+  max-width: 170px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.attendance-info-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding: 17px 20px;
+  border: 1px solid #dbe9ef;
+  border-radius: 16px;
+  background: #edf7fa;
+}
+
+.attendance-info-card .info-icon {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  background: rgba(255,255,255,.65);
+}
+
+.attendance-info-card h3 {
+  margin: 0 0 5px;
+  color: #506a78;
+  font-size: 14px;
+}
+
+.attendance-info-card p {
+  margin: 0 0 7px;
+  color: #78909b;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.attendance-info-card a {
+  color: #64869a;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* ---------- ADVANCES ---------- */
+.advances-page .advances-summary-card {
+  min-height: 108px;
+}
+
+.advances-page .advances-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  margin-bottom: 22px;
+  padding: 17px 20px;
+  border: 1px solid #d8e8ef;
+  border-radius: 16px;
+  background: #edf7fa;
+}
+
+.advances-info-icon {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: rgba(255,255,255,.65);
+}
+
+.advances-info strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #506878;
+  font-size: 14px;
+}
+
+.advances-info p {
+  margin: 0;
+  color: #78919e;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.advances-card,
+.bonuses-card {
+  overflow: hidden;
+  margin-bottom: 24px;
+  padding: 0 !important;
+  border: 1px solid #eee5ef;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(82, 65, 92, .055);
+}
+
+.advances-card-header,
+.bonuses-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px 24px 17px;
+}
+
+.advances-card-header h2,
+.bonuses-card-header h2 {
+  margin: 0 0 5px;
+  color: #493d52;
+  font-size: 20px;
+}
+
+.advances-card-header p,
+.bonuses-card-header p {
+  margin: 0;
+  color: #a095a6;
+  font-size: 12px;
+}
+
+.advances-page .secondary-button,
+.bonuses-page .secondary-button {
+  min-height: 38px;
+  padding: 0 13px;
+  border: 1px solid #e5dce7;
+  border-radius: 10px;
+  background: #fff;
+  color: #66576d;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.advances-page .advances-table th,
+.bonuses-page .bonuses-table th {
+  background: #f8f7fa;
+}
+
+.advances-page .advances-table td,
+.bonuses-page .bonuses-table td {
+  height: 72px;
+  padding: 10px 18px;
+  border-bottom: 1px solid #f0ebf0;
+  color: #625969;
+  font-size: 12px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.advances-page .advance-avatar {
+  background: #f0d6cb;
+  color: #7d5b5d;
+}
+
+.advances-page .advance-amount {
+  color: #4b4050;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.advances-page .advance-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.advances-page .advance-pending {
+  background: #fff0d8;
+  color: #9b784d;
+}
+
+.advances-page .advance-pending .status-dot {
+  background: #c69b61;
+}
+
+.advances-page .advance-deducted {
+  background: #def1e6;
+  color: #56806a;
+}
+
+.advances-page .advance-deducted .status-dot {
+  background: #70a487;
+}
+
+.advances-page .advance-cancelled {
+  background: #f1e9ed;
+  color: #8b7b85;
+}
+
+.advances-page .advance-cancelled .status-dot {
+  background: #a99ba3;
+}
+
+.advances-page .advance-note {
+  display: block;
+  max-width: 220px;
+  overflow: hidden;
+  color: #776d7c;
+  text-overflow: ellipsis;
+}
+
+.advances-page .advance-actions {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+}
+
+.advances-page .advance-action {
+  min-height: 32px;
+  padding: 0 10px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.advances-page .advance-action.deduct {
+  border: 1px solid #cfe5d8;
+  background: #edf8f1;
+  color: #587d68;
+}
+
+.advances-page .advance-action.cancel {
+  border: 1px solid #ead9dd;
+  background: #fff6f7;
+  color: #966f76;
+}
+
+.advances-page .advance-action:hover {
+  transform: translateY(-1px);
+}
+
+.advances-page .advance-locked {
+  color: #aaa0ac;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+/* ---------- BONUSES ---------- */
+.bonuses-page .bonuses-summary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.bonuses-page .bonus-summary-card {
+  min-height: 108px;
+}
+
+.bonuses-page .bonuses-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  margin-bottom: 22px;
+  padding: 17px 20px;
+  border: 1px solid #e4d9e8;
+  border-radius: 16px;
+  background: #f8f2fa;
+}
+
+.bonuses-info-icon {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: rgba(255,255,255,.7);
+}
+
+.bonuses-info strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #5d4d64;
+  font-size: 14px;
+}
+
+.bonuses-info p {
+  margin: 0;
+  color: #8c7e91;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.bonuses-page .bonus-avatar {
+  background: #e7d5eb;
+  color: #735878;
+}
+
+.bonuses-page .bonus-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 9px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.bonuses-page .bonus-type-percentage {
+  background: #eee3f3;
+  color: #795f82;
+}
+
+.bonuses-page .bonus-type-fixed {
+  background: #f8e3d8;
+  color: #956d5c;
+}
+
+.bonuses-page .bonus-value {
+  color: #4d4052;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.bonuses-page .bonus-reason {
+  display: block;
+  max-width: 260px;
+  overflow: hidden;
+  color: #776d7c;
+  text-overflow: ellipsis;
+}
+
+.bonuses-page .bonuses-table td:nth-child(4) {
+  color: #766b79;
+}
+
+/* ---------- PAGE STATES ---------- */
+.attendance-page .empty-state,
+.advances-page .page-state,
+.bonuses-page .page-state {
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.attendance-page .empty-state h3,
+.advances-page .page-state h3,
+.bonuses-page .page-state h3 {
+  margin: 14px 0 5px;
+  color: #514557;
+  font-size: 16px;
+}
+
+.attendance-page .empty-state p,
+.advances-page .page-state p,
+.bonuses-page .page-state p {
+  margin: 0 0 16px;
+  color: #9b909f;
+  font-size: 12px;
+}
+
+.attendance-page .empty-icon,
+.advances-page .empty-icon,
+.bonuses-page .empty-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: #f5edf5;
+  font-size: 21px;
+}
+
+.attendance-page .loading-spinner,
+.advances-page .loading-circle,
+.bonuses-page .loading-circle {
+  width: 28px;
+  height: 28px;
+  margin: 0 auto;
+  border: 3px solid #eee6ef;
+  border-top-color: #c49acb;
+  border-radius: 50%;
+  animation: payflow-spin .8s linear infinite;
+}
+
+@keyframes payflow-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- MODALS: EXACT PAGE CLASSES ---------- */
+.attendance-page .modal-overlay,
+.advances-page .modal-overlay,
+.bonuses-page .modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(54, 45, 61, .28);
+  backdrop-filter: blur(5px);
+}
+
+.attendance-page .modal-card,
+.advances-page .advance-modal,
+.bonuses-page .bonus-modal {
+  width: min(620px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  border: 1px solid #eee4ef;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 24px 70px rgba(58, 45, 65, .18);
+}
+
+.attendance-page .modal-header,
+.advances-page .modal-header,
+.bonuses-page .modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 24px 26px 18px;
+  border-bottom: 1px solid #f0e9f1;
+}
+
+.attendance-page .modal-header h2,
+.advances-page .modal-header h2,
+.bonuses-page .modal-header h2 {
+  margin: 6px 0 5px;
+  color: #473b4f;
+  font-size: 21px;
+}
+
+.attendance-page .modal-header p,
+.advances-page .modal-header p,
+.bonuses-page .modal-header p {
+  margin: 0;
+  color: #9b909f;
+  font-size: 12px;
+}
+
+.attendance-page .modal-close,
+.advances-page .modal-close,
+.bonuses-page .modal-close {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  border: 1px solid #eadfea;
+  border-radius: 10px;
+  background: #faf7fb;
+  color: #75677b;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.attendance-page .modal-card form,
+.advances-page .advance-modal form,
+.bonuses-page .bonus-modal form {
+  padding: 22px 26px 24px;
+}
+
+.attendance-page .form-grid,
+.advances-page .form-grid,
+.bonuses-page .form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px;
+}
+
+.attendance-page .form-group,
+.advances-page .form-group,
+.bonuses-page .form-group {
+  min-width: 0;
+}
+
+.attendance-page .form-group.full-width,
+.advances-page .form-group.full-width,
+.bonuses-page .form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.attendance-page .form-group label,
+.advances-page .form-group label,
+.bonuses-page .form-group label {
+  display: block;
+  margin-bottom: 7px;
+  color: #62566a;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.attendance-page .form-group input,
+.attendance-page .form-group select,
+.attendance-page .form-group textarea,
+.advances-page .form-group input,
+.advances-page .form-group select,
+.bonuses-page .form-group input,
+.bonuses-page .form-group select {
+  width: 100%;
+  min-height: 41px;
+  border: 1px solid #e4dce7;
+  border-radius: 10px;
+  outline: none;
+  background: #fff;
+  color: #5a4f61;
+  font: inherit;
+  font-size: 12px;
+}
+
+.attendance-page .form-group input,
+.attendance-page .form-group select,
+.advances-page .form-group input,
+.advances-page .form-group select,
+.bonuses-page .form-group input,
+.bonuses-page .form-group select {
+  padding: 0 12px;
+}
+
+.attendance-page .form-group textarea {
+  padding: 11px 12px;
+  resize: vertical;
+}
+
+.attendance-page .form-group input:focus,
+.attendance-page .form-group select:focus,
+.attendance-page .form-group textarea:focus,
+.advances-page .form-group input:focus,
+.advances-page .form-group select:focus,
+.bonuses-page .form-group input:focus,
+.bonuses-page .form-group select:focus {
+  border-color: #c8a4cf;
+  box-shadow: 0 0 0 3px rgba(200, 164, 207, .13);
+}
+
+.attendance-page .form-group input:disabled {
+  background: #f6f3f6;
+  color: #aaa0ad;
+  cursor: not-allowed;
+}
+
+.attendance-page .form-error {
+  margin-top: 15px;
+  padding: 10px 12px;
+  border: 1px solid #efd7da;
+  border-radius: 10px;
+  background: #fff5f5;
+  color: #946b71;
+  font-size: 11px;
+}
+
+.advances-form-info,
+.bonuses-form-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-top: 17px;
+  padding: 11px 12px;
+  border-radius: 10px;
+  background: #f4f8fa;
+  color: #78909b;
+}
+
+.advances-form-info span,
+.bonuses-form-info span {
+  font-weight: 800;
+}
+
+.advances-form-info p,
+.bonuses-form-info p {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.attendance-page .modal-actions,
+.advances-page .modal-actions,
+.bonuses-page .modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 9px;
+  margin-top: 20px;
+}
+
+.attendance-page .modal-actions .primary-button,
+.attendance-page .modal-actions .secondary-button,
+.advances-page .modal-actions .primary-button,
+.advances-page .modal-actions .secondary-button,
+.bonuses-page .modal-actions .primary-button,
+.bonuses-page .modal-actions .secondary-button {
+  min-height: 40px;
+  padding: 0 15px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1050px) {
+  .attendance-page .stats-grid,
+  .advances-page .advances-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .bonuses-page .bonuses-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .attendance-heading,
+  .advances-header,
+  .bonuses-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .attendance-heading .primary-button,
+  .advances-header .primary-button,
+  .bonuses-header .primary-button {
+    width: fit-content;
+  }
+
+  .attendance-page .attendance-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .attendance-page .search-box {
+    max-width: none;
+  }
+
+  .attendance-page .attendance-filters select {
+    width: 100%;
+  }
+
+  .attendance-records-card .section-header,
+  .advances-card-header,
+  .bonuses-card-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .attendance-page .form-grid,
+  .advances-page .form-grid,
+  .bonuses-page .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .attendance-page .form-group.full-width,
+  .advances-page .form-group.full-width,
+  .bonuses-page .form-group.full-width {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .attendance-page .stats-grid,
+  .advances-page .advances-summary,
+  .bonuses-page .bonuses-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .attendance-page .attendance-heading h1,
+  .advances-header h1,
+  .bonuses-header h1 {
+    font-size: 27px;
+  }
+
+  .attendance-page .attendance-heading .primary-button,
+  .advances-header .primary-button,
+  .bonuses-header .primary-button {
+    width: 100%;
+  }
+
+  .attendance-page .attendance-records-card .section-header,
+  .advances-card-header,
+  .bonuses-card-header,
+  .attendance-page .modal-header,
+  .advances-page .modal-header,
+  .bonuses-page .modal-header,
+  .attendance-page .modal-card form,
+  .advances-page .advance-modal form,
+  .bonuses-page .bonus-modal form {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .attendance-page .modal-actions,
+  .advances-page .modal-actions,
+  .bonuses-page .modal-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .attendance-page .modal-actions button,
+  .advances-page .modal-actions button,
+  .bonuses-page .modal-actions button {
+    width: 100%;
+  }
+}
+
+
+/* =========================================================
+   FINAL PRINT FIX — SALARY SLIP
+   Fixes blank first page caused by the application layout
+   remaining in the print flow.
+   ========================================================= */
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+
+  html,
+  body {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    overflow: visible !important;
+  }
+
+  #root {
+    width: 100% !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* Keep the application itself out of the print layout. */
+  #root * {
+    visibility: hidden !important;
+  }
+
+  /* Re-enable ONLY the salary slip. */
+  #root .salary-slip,
+  #root .salary-slip * {
+    visibility: visible !important;
+  }
+
+  /* Remove the screen page container from the print flow. */
+  #root .salary-slips-page {
+    position: static !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* Put the actual slip directly on the printable page. */
+  #root .salary-slip {
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    right: auto !important;
+    bottom: auto !important;
+
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: #ffffff !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+
+    overflow: visible !important;
+    transform: none !important;
+  }
+
+  #root .salary-slip-header {
+    padding: 18px 20px !important;
+    background: #ffffff !important;
+    border-bottom: 1px solid #dddddd !important;
+  }
+
+  #root .salary-slip-body {
+    padding: 18px 20px !important;
+  }
+
+  #root .salary-slip-footer,
+  #root .salary-slip-selector,
+  #root .print-button {
+    display: none !important;
+  }
+
+  #root .salary-slip-section {
+    margin-top: 14px !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  #root .salary-slip-row {
+    padding: 7px 0 !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  #root .salary-slip-total {
+    margin-top: 12px !important;
+    padding: 13px 16px !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  #root .salary-slip-employee {
+    margin-bottom: 14px !important;
+  }
+
+  #root .salary-slip-header,
+  #root .salary-slip-body,
+  #root .salary-slip-total {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+}
+/* =========================================================
+   OVERTIME SUMMARY TEXT REFINEMENT
+   ========================================================= */
+
+.overtime-stats .stat-content strong {
+  display: block;
+  margin: 6px 0 3px;
+}
+
+.overtime-stats .stat-content small {
+  display: block;
+  margin-top: 2px;
+}
+
+.overtime-stats .stat-content {
+  min-width: 0;
+}
+
+.overtime-stats .stat-label {
+  display: block;
+}
+/* =========================================================
+   OVERTIME RECORDS HEADER REFINEMENT
+   ========================================================= */
+
+.overtime-records-card .section-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.overtime-records-card .section-header .refresh-button {
+  flex-shrink: 0;
+  margin-top: 0;
+}
+
+/* Keep the records table clean and aligned */
+.overtime-records-card .data-table {
+  margin-top: 18px;
+}
+
+.overtime-records-card .data-table th,
+.overtime-records-card .data-table td {
+  vertical-align: middle;
+}
+
+/* Employee column */
+.overtime-records-card .employee-cell {
+  min-width: 220px;
+}
+
+/* Amount emphasis */
+.overtime-records-card .amount-cell {
+  font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .overtime-records-card .section-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .overtime-records-card .section-header .refresh-button {
+    align-self: flex-start;
+  }
+}
