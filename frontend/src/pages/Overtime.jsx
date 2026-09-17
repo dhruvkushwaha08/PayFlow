@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { getToken } from "../services/auth";
 
 const API_URL = "http://localhost:8080/api";
 
@@ -33,9 +34,22 @@ function Overtime() {
       setLoading(true);
       setError("");
 
+      const token = getToken();
+
       const [overtimeResponse, employeeResponse] = await Promise.all([
-        fetch(`${API_URL}/overtime`),
-        fetch(`${API_URL}/employees`),
+        fetch(`${API_URL}/overtime`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }),
+
+        fetch(`${API_URL}/employees`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }),
       ]);
 
       if (!overtimeResponse.ok) {
@@ -192,6 +206,8 @@ function Overtime() {
       setSaving(true);
       setError("");
 
+      const token = getToken();
+
       // IMPORTANT:
       // Convert the selected employee ID to a number.
       const employeeId = Number(form.employeeId);
@@ -213,6 +229,7 @@ function Overtime() {
       const response = await fetch(`${API_URL}/overtime`, {
         method: "POST",
         headers: {
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(requestBody),

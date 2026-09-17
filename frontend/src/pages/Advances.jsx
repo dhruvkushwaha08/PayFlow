@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { getToken } from "../services/auth";
 
 const API_URL = "http://localhost:8080/api";
 
@@ -19,14 +20,30 @@ function Advances() {
     notes: "",
   });
 
+  // =========================================================
+  // LOAD DATA
+  // =========================================================
+
   const loadData = async () => {
     try {
       setLoading(true);
       setError("");
 
+      const token = getToken();
+
+      const authHeaders = {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      };
+
       const [advanceResponse, employeeResponse] = await Promise.all([
-        fetch(`${API_URL}/advances`),
-        fetch(`${API_URL}/employees`),
+        fetch(`${API_URL}/advances`, {
+          headers: authHeaders,
+        }),
+
+        fetch(`${API_URL}/employees`, {
+          headers: authHeaders,
+        }),
       ]);
 
       if (!advanceResponse.ok) {
@@ -54,6 +71,10 @@ function Advances() {
     loadData();
   }, []);
 
+  // =========================================================
+  // EMPLOYEE HELPERS
+  // =========================================================
+
   const employeeMap = {};
 
   employees.forEach((employee) => {
@@ -78,6 +99,10 @@ function Advances() {
     return employee?.employeeCode || `EMP-${employeeId}`;
   };
 
+  // =========================================================
+  // SUMMARY
+  // =========================================================
+
   const pendingAdvances = advances.filter(
     (advance) => advance.status === "PENDING"
   );
@@ -100,6 +125,10 @@ function Advances() {
     0
   );
 
+  // =========================================================
+  // FORM
+  // =========================================================
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -109,6 +138,10 @@ function Advances() {
     }));
   };
 
+  // =========================================================
+  // CREATE ADVANCE
+  // =========================================================
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -116,11 +149,16 @@ function Advances() {
       setSaving(true);
       setError("");
 
+      const token = getToken();
+
       const response = await fetch(`${API_URL}/advances`, {
         method: "POST",
+
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
+
         body: JSON.stringify({
           employeeId: Number(form.employeeId),
           amount: Number(form.amount),
@@ -155,17 +193,26 @@ function Advances() {
     }
   };
 
+  // =========================================================
+  // UPDATE STATUS
+  // =========================================================
+
   const updateStatus = async (advanceId, status) => {
     try {
       setError("");
+
+      const token = getToken();
 
       const response = await fetch(
         `${API_URL}/advances/${advanceId}/status`,
         {
           method: "PATCH",
+
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
+
           body: JSON.stringify({
             status,
           }),
@@ -191,6 +238,10 @@ function Advances() {
     }
   };
 
+  // =========================================================
+  // FORMATTERS
+  // =========================================================
+
   const formatCurrency = (amount) => {
     return `₹${Number(amount || 0).toLocaleString("en-IN", {
       minimumFractionDigits: 2,
@@ -206,6 +257,10 @@ function Advances() {
       status.slice(1).toLowerCase()
     );
   };
+
+  // =========================================================
+  // UI
+  // =========================================================
 
   return (
     <div className="advances-page">
@@ -252,13 +307,15 @@ function Advances() {
           <div>
             <span>Total Advances</span>
 
-            <strong>{formatCurrency(
-              advances.reduce(
-                (total, advance) =>
-                  total + Number(advance.amount || 0),
-                0
-              )
-            )}</strong>
+            <strong>
+              {formatCurrency(
+                advances.reduce(
+                  (total, advance) =>
+                    total + Number(advance.amount || 0),
+                  0
+                )
+              )}
+            </strong>
 
             <small>
               All recorded advances
@@ -348,6 +405,7 @@ function Advances() {
           <button
             className="secondary-button"
             onClick={loadData}
+            disabled={loading}
           >
             ↻ Refresh
           </button>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { getToken } from "../services/auth";
 
 const API_URL = "http://localhost:8080/api";
 
@@ -20,14 +21,30 @@ function Bonuses() {
     reason: "",
   });
 
+  // =========================================================
+  // LOAD DATA
+  // =========================================================
+
   const loadData = async () => {
     try {
       setLoading(true);
       setError("");
 
+      const token = getToken();
+
+      const authHeaders = {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      };
+
       const [bonusResponse, employeeResponse] = await Promise.all([
-        fetch(`${API_URL}/bonuses`),
-        fetch(`${API_URL}/employees`),
+        fetch(`${API_URL}/bonuses`, {
+          headers: authHeaders,
+        }),
+
+        fetch(`${API_URL}/employees`, {
+          headers: authHeaders,
+        }),
       ]);
 
       if (!bonusResponse.ok) {
@@ -55,6 +72,10 @@ function Bonuses() {
     loadData();
   }, []);
 
+  // =========================================================
+  // EMPLOYEE HELPERS
+  // =========================================================
+
   const employeeMap = {};
 
   employees.forEach((employee) => {
@@ -79,6 +100,10 @@ function Bonuses() {
     return employee?.employeeCode || `EMP-${employeeId}`;
   };
 
+  // =========================================================
+  // BONUS SUMMARY
+  // =========================================================
+
   const percentageBonuses = bonuses.filter(
     (bonus) => bonus.bonusType === "PERCENTAGE"
   );
@@ -97,6 +122,10 @@ function Bonuses() {
     0
   );
 
+  // =========================================================
+  // FORM
+  // =========================================================
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -106,6 +135,10 @@ function Bonuses() {
     }));
   };
 
+  // =========================================================
+  // CREATE BONUS
+  // =========================================================
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -113,11 +146,16 @@ function Bonuses() {
       setSaving(true);
       setError("");
 
+      const token = getToken();
+
       const response = await fetch(`${API_URL}/bonuses`, {
         method: "POST",
+
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
+
         body: JSON.stringify({
           employeeId: Number(form.employeeId),
           bonusType: form.bonusType,
@@ -154,6 +192,10 @@ function Bonuses() {
     }
   };
 
+  // =========================================================
+  // FORMATTERS
+  // =========================================================
+
   const formatCurrency = (amount) => {
     return `₹${Number(amount || 0).toLocaleString("en-IN", {
       minimumFractionDigits: 2,
@@ -161,12 +203,19 @@ function Bonuses() {
     })}`;
   };
 
+  // =========================================================
+  // UI
+  // =========================================================
+
   return (
     <div className="bonuses-page">
+
+      {/* HEADER */}
 
       <div className="bonuses-header">
 
         <div>
+
           <div className="bonuses-eyebrow">
             EMPLOYEE REWARDS
           </div>
@@ -176,6 +225,7 @@ function Bonuses() {
           <p className="page-subtitle">
             Reward employees with performance, festival and fixed bonuses.
           </p>
+
         </div>
 
         <button
@@ -190,6 +240,8 @@ function Bonuses() {
 
       </div>
 
+      {/* ERROR */}
+
       {error && (
         <div className="error-message">
           <span>⚠</span>
@@ -197,43 +249,59 @@ function Bonuses() {
         </div>
       )}
 
+      {/* SUMMARY */}
+
       <div className="bonuses-summary">
 
         <div className="bonus-summary-card bonus-yellow">
+
           <div className="bonus-icon">✨</div>
 
           <div>
             <span>Total Bonus Records</span>
+
             <strong>{bonuses.length}</strong>
+
             <small>Recorded bonuses</small>
           </div>
+
         </div>
 
         <div className="bonus-summary-card bonus-lavender">
+
           <div className="bonus-icon">%</div>
 
           <div>
             <span>Percentage Bonuses</span>
+
             <strong>{percentageBonuses.length}</strong>
+
             <small>
               {percentageValue.toFixed(2)}% combined value
             </small>
           </div>
+
         </div>
 
         <div className="bonus-summary-card bonus-peach">
+
           <div className="bonus-icon">₹</div>
 
           <div>
             <span>Fixed Bonuses</span>
+
             <strong>
               {formatCurrency(fixedValue)}
             </strong>
+
             <small>Fixed-value bonuses</small>
           </div>
+
         </div>
 
       </div>
+
+      {/* INFO */}
 
       <div className="bonuses-info">
 
@@ -242,6 +310,7 @@ function Bonuses() {
         </div>
 
         <div>
+
           <strong>Payroll calculation</strong>
 
           <p>
@@ -249,30 +318,38 @@ function Bonuses() {
             earned salary for the payroll month. Fixed bonuses are
             added directly.
           </p>
+
         </div>
 
       </div>
+
+      {/* BONUS RECORDS */}
 
       <div className="bonuses-card">
 
         <div className="bonuses-card-header">
 
           <div>
+
             <h2>Bonus Records</h2>
 
             <p>
               View bonuses assigned to your employees.
             </p>
+
           </div>
 
           <button
             className="secondary-button"
             onClick={loadData}
+            disabled={loading}
           >
             ↻ Refresh
           </button>
 
         </div>
+
+        {/* LOADING */}
 
         {loading && (
           <div className="page-state">
@@ -287,6 +364,8 @@ function Bonuses() {
 
           </div>
         )}
+
+        {/* EMPTY */}
 
         {!loading && bonuses.length === 0 && (
           <div className="page-state">
@@ -311,12 +390,15 @@ function Bonuses() {
           </div>
         )}
 
+        {/* TABLE */}
+
         {!loading && bonuses.length > 0 && (
           <div className="table-wrapper">
 
             <table className="bonuses-table">
 
               <thead>
+
                 <tr>
                   <th>Employee</th>
                   <th>Type</th>
@@ -324,6 +406,7 @@ function Bonuses() {
                   <th>Date</th>
                   <th>Reason</th>
                 </tr>
+
               </thead>
 
               <tbody>
@@ -333,6 +416,7 @@ function Bonuses() {
                   <tr key={bonus.bonusId}>
 
                     <td>
+
                       <div className="bonus-employee">
 
                         <div className="bonus-avatar">
@@ -344,6 +428,7 @@ function Bonuses() {
                         </div>
 
                         <div>
+
                           <strong>
                             {getEmployeeName(
                               bonus.employeeId
@@ -355,9 +440,11 @@ function Bonuses() {
                               bonus.employeeId
                             )}
                           </span>
+
                         </div>
 
                       </div>
+
                     </td>
 
                     <td>
@@ -367,11 +454,13 @@ function Bonuses() {
                           bonus.bonusType || ""
                         ).toLowerCase()}`}
                       >
+
                         {bonus.bonusType === "PERCENTAGE"
                           ? "%"
                           : "₹"}
 
                         {bonus.bonusType}
+
                       </span>
 
                     </td>
@@ -379,6 +468,7 @@ function Bonuses() {
                     <td>
 
                       <strong className="bonus-value">
+
                         {bonus.bonusType === "PERCENTAGE"
                           ? `${Number(
                               bonus.value
@@ -386,6 +476,7 @@ function Bonuses() {
                           : formatCurrency(
                               bonus.value
                             )}
+
                       </strong>
 
                     </td>
@@ -395,9 +486,11 @@ function Bonuses() {
                     </td>
 
                     <td>
+
                       <span className="bonus-reason">
                         {bonus.reason || "—"}
                       </span>
+
                     </td>
 
                   </tr>
@@ -413,14 +506,18 @@ function Bonuses() {
 
       </div>
 
+      {/* ADD BONUS MODAL */}
+
       {showModal && (
 
         <div
           className="modal-overlay"
           onMouseDown={(event) => {
+
             if (event.target === event.currentTarget) {
               setShowModal(false);
             }
+
           }}
         >
 
@@ -445,6 +542,7 @@ function Bonuses() {
               <button
                 className="modal-close"
                 onClick={() => setShowModal(false)}
+                disabled={saving}
               >
                 ×
               </button>
@@ -506,6 +604,7 @@ function Bonuses() {
                     onChange={handleChange}
                     required
                   >
+
                     <option value="PERCENTAGE">
                       Percentage
                     </option>
@@ -513,6 +612,7 @@ function Bonuses() {
                     <option value="FIXED">
                       Fixed Amount
                     </option>
+
                   </select>
 
                 </div>
@@ -625,6 +725,7 @@ function Bonuses() {
           </div>
 
         </div>
+
       )}
 
     </div>

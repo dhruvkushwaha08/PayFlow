@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { getToken } from '../services/auth'
 
 const API_URL = 'http://localhost:8080/api/employees'
 
@@ -30,7 +31,14 @@ function Employees() {
       setLoading(true)
       setError('')
 
-      const response = await fetch(API_URL)
+      const token = getToken()
+
+      const response = await fetch(API_URL, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
 
       if (!response.ok) {
         throw new Error('Failed to load employees')
@@ -64,10 +72,13 @@ function Employees() {
     try {
       setError('')
 
+      const token = getToken()
+
       const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           ...form,
@@ -112,8 +123,14 @@ function Employees() {
     try {
       setError('')
 
+      const token = getToken()
+
       const response = await fetch(`${API_URL}/${employeeId}`, {
         method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
       })
 
       if (!response.ok) {
@@ -400,6 +417,7 @@ function Employees() {
 
                 <div className="form-group">
                   <label>Employee Code</label>
+
                   <input
                     name="employeeCode"
                     value={form.employeeCode}
@@ -411,6 +429,7 @@ function Employees() {
 
                 <div className="form-group">
                   <label>Role ID</label>
+
                   <input
                     type="number"
                     name="roleId"
@@ -423,6 +442,7 @@ function Employees() {
 
                 <div className="form-group">
                   <label>First Name</label>
+
                   <input
                     name="firstName"
                     value={form.firstName}
@@ -434,6 +454,7 @@ function Employees() {
 
                 <div className="form-group">
                   <label>Last Name</label>
+
                   <input
                     name="lastName"
                     value={form.lastName}
@@ -444,6 +465,7 @@ function Employees() {
 
                 <div className="form-group">
                   <label>Email</label>
+
                   <input
                     type="email"
                     name="email"
@@ -455,6 +477,7 @@ function Employees() {
 
                 <div className="form-group">
                   <label>Phone</label>
+
                   <input
                     name="phone"
                     value={form.phone}
@@ -465,6 +488,7 @@ function Employees() {
 
                 <div className="form-group">
                   <label>Joining Date</label>
+
                   <input
                     type="date"
                     name="joiningDate"

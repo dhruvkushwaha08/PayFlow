@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { getToken } from '../services/auth'
 
 const API_URL = 'http://localhost:8080/api'
 
@@ -35,9 +36,20 @@ function Attendance() {
       setLoading(true)
       setError('')
 
+      const token = getToken()
+
+      const authHeaders = {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      }
+
       const [attendanceResponse, employeesResponse] = await Promise.all([
-        fetch(`${API_URL}/attendance`),
-        fetch(`${API_URL}/employees`),
+        fetch(`${API_URL}/attendance`, {
+          headers: authHeaders,
+        }),
+        fetch(`${API_URL}/employees`, {
+          headers: authHeaders,
+        }),
       ])
 
       if (!attendanceResponse.ok) {
@@ -51,8 +63,13 @@ function Attendance() {
       const attendanceData = await attendanceResponse.json()
       const employeeData = await employeesResponse.json()
 
-      setAttendanceRecords(Array.isArray(attendanceData) ? attendanceData : [])
-      setEmployees(Array.isArray(employeeData) ? employeeData : [])
+      setAttendanceRecords(
+        Array.isArray(attendanceData) ? attendanceData : []
+      )
+
+      setEmployees(
+        Array.isArray(employeeData) ? employeeData : []
+      )
     } catch (err) {
       console.error(err)
       setError(err.message || 'Unable to load attendance records.')
@@ -202,8 +219,9 @@ function Attendance() {
     setFormError('')
 
     setForm({
-      employeeId: employees.find((employee) => employee.status === 'ACTIVE')
-        ?.employeeId || '',
+      employeeId:
+        employees.find((employee) => employee.status === 'ACTIVE')
+          ?.employeeId || '',
       attendanceDate: new Date().toISOString().split('T')[0],
       status: 'PRESENT',
       checkIn: '',
@@ -252,6 +270,8 @@ function Attendance() {
       setSaving(true)
       setFormError('')
 
+      const token = getToken()
+
       const payload = {
         employeeId: Number(form.employeeId),
         attendanceDate: form.attendanceDate,
@@ -270,6 +290,7 @@ function Attendance() {
       const response = await fetch(`${API_URL}/attendance`, {
         method: 'POST',
         headers: {
+          Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(payload),
@@ -325,10 +346,12 @@ function Attendance() {
       {error && (
         <div className="page-alert error-alert">
           <span>⚠️</span>
+
           <div>
             <strong>Unable to load attendance</strong>
             <p>{error}</p>
           </div>
+
           <button type="button" onClick={loadData}>
             Try again
           </button>
@@ -383,6 +406,7 @@ function Attendance() {
         <div className="section-header">
           <div>
             <h2>Attendance Records</h2>
+
             <p>
               {filteredRecords.length} of {summary.total} attendance entries
             </p>
@@ -427,7 +451,9 @@ function Attendance() {
         {loading ? (
           <div className="empty-state">
             <div className="loading-spinner"></div>
+
             <h3>Loading attendance...</h3>
+
             <p>Please wait while we fetch the latest records.</p>
           </div>
         ) : filteredRecords.length === 0 ? (
@@ -559,7 +585,9 @@ function Attendance() {
             <div className="modal-header">
               <div>
                 <p className="page-eyebrow">DAILY RECORD</p>
+
                 <h2>Mark Attendance</h2>
+
                 <p>
                   Add attendance details for an employee.
                 </p>

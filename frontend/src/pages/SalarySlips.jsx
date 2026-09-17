@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
+import { getToken } from '../services/auth'
 
 const API_URL = 'http://localhost:8080/api'
 
 function SalarySlips() {
   const [payrollRecords, setPayrollRecords] = useState([])
   const [employees, setEmployees] = useState([])
-
   const [selectedId, setSelectedId] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -19,10 +19,21 @@ function SalarySlips() {
       setLoading(true)
       setError('')
 
+      const token = getToken()
+
+      const authHeaders = {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+
       const [payrollResponse, employeesResponse] =
         await Promise.all([
-          fetch(`${API_URL}/payroll`),
-          fetch(`${API_URL}/employees`)
+          fetch(`${API_URL}/payroll`, {
+            headers: authHeaders
+          }),
+          fetch(`${API_URL}/employees`, {
+            headers: authHeaders
+          })
         ])
 
       if (!payrollResponse.ok) {
@@ -48,7 +59,9 @@ function SalarySlips() {
       setEmployees(employeeList)
 
       if (payroll.length > 0) {
-        setSelectedId(String(payroll[0].payrollId || payroll[0].id))
+        setSelectedId(
+          String(payroll[0].payrollId || payroll[0].id)
+        )
       } else {
         setSelectedId('')
       }
@@ -153,27 +166,37 @@ function SalarySlips() {
     : '-'
 
   function handlePrint() {
-    const salarySlip = document.querySelector('.salary-slip-card')
+    const salarySlip = document.querySelector(
+      '.salary-slip-card'
+    )
 
     if (!salarySlip) {
       setError('Salary slip is not ready to print.')
       return
     }
 
-    const printWindow = window.open('', '_blank', 'width=900,height=1200')
+    const printWindow = window.open(
+      '',
+      '_blank',
+      'width=900,height=1200'
+    )
 
     if (!printWindow) {
-      setError('Please allow pop-ups in your browser to print the salary slip.')
+      setError(
+        'Please allow pop-ups in your browser to print the salary slip.'
+      )
       return
     }
 
-    // Reuse the application's loaded styles so the printed slip
-    // keeps the same PayFlow design.
     const styles = Array.from(
-      document.querySelectorAll('link[rel="stylesheet"], style')
+      document.querySelectorAll(
+        'link[rel="stylesheet"], style'
+      )
     )
-      .map((element) => {
-        if (element.tagName.toLowerCase() === 'link') {
+      .map(element => {
+        if (
+          element.tagName.toLowerCase() === 'link'
+        ) {
           return `<link rel="stylesheet" href="${element.href}">`
         }
 
@@ -182,6 +205,7 @@ function SalarySlips() {
       .join('')
 
     printWindow.document.open()
+
     printWindow.document.write(`
       <!DOCTYPE html>
       <html>
@@ -211,11 +235,6 @@ function SalarySlips() {
               print-color-adjust: exact !important;
             }
 
-            /* IMPORTANT:
-               The main App.css contains a global print rule that hides
-               body * and then only unhides .salary-slip. The real JSX
-               class is .salary-slip-card. Override that rule completely
-               inside this dedicated print window. */
             body,
             body * {
               visibility: visible !important;
@@ -294,8 +313,6 @@ function SalarySlips() {
               padding: 12px 22px !important;
             }
 
-            /* Highest-priority visibility override for the dedicated
-               print document. */
             @media print {
               html body,
               html body * {
@@ -336,8 +353,6 @@ function SalarySlips() {
   return (
     <div className="page salary-slips-page">
 
-      {/* HEADER */}
-
       <div className="page-heading">
 
         <div>
@@ -363,17 +378,11 @@ function SalarySlips() {
 
       </div>
 
-
-      {/* ERROR */}
-
       {error && (
         <div className="error-banner">
           ⚠️ {error}
         </div>
       )}
-
-
-      {/* LOADING */}
 
       {loading ? (
 
@@ -415,13 +424,12 @@ function SalarySlips() {
 
         <>
 
-          {/* SELECTOR */}
-
           <div className="dashboard-card salary-slip-selector">
 
             <div className="section-heading">
 
               <div>
+
                 <h2>
                   Select Salary Slip
                 </h2>
@@ -429,6 +437,7 @@ function SalarySlips() {
                 <p>
                   Choose a payroll record to view its salary slip.
                 </p>
+
               </div>
 
             </div>
@@ -477,16 +486,11 @@ function SalarySlips() {
 
           </div>
 
-
-          {/* SALARY SLIP */}
-
           {selectedPayroll && (
 
             <div className="salary-slip-container">
 
               <div className="salary-slip-card">
-
-                {/* SLIP HEADER */}
 
                 <div className="salary-slip-header">
 
@@ -517,9 +521,6 @@ function SalarySlips() {
                   </div>
 
                 </div>
-
-
-                {/* EMPLOYEE INFORMATION */}
 
                 <div className="salary-slip-employee">
 
@@ -562,9 +563,6 @@ function SalarySlips() {
                   </div>
 
                 </div>
-
-
-                {/* BASIC INFORMATION */}
 
                 <div className="salary-slip-meta">
 
@@ -627,9 +625,6 @@ function SalarySlips() {
                   </div>
 
                 </div>
-
-
-                {/* EARNINGS */}
 
                 <div className="salary-slip-section">
 
@@ -717,9 +712,6 @@ function SalarySlips() {
 
                 </div>
 
-
-                {/* DEDUCTIONS */}
-
                 <div className="salary-slip-section">
 
                   <div className="salary-slip-section-title">
@@ -777,9 +769,6 @@ function SalarySlips() {
 
                 </div>
 
-
-                {/* NET SALARY */}
-
                 <div className="salary-slip-net">
 
                   <div>
@@ -802,9 +791,6 @@ function SalarySlips() {
 
                 </div>
 
-
-                {/* FORMULA */}
-
                 <div className="salary-slip-note">
 
                   <strong>
@@ -822,9 +808,6 @@ function SalarySlips() {
 
                 </div>
 
-
-                {/* FOOTER */}
-
                 <div className="salary-slip-footer">
 
                   <span>
@@ -838,9 +821,6 @@ function SalarySlips() {
                 </div>
 
               </div>
-
-
-              {/* ACTIONS */}
 
               <div className="salary-slip-actions">
 

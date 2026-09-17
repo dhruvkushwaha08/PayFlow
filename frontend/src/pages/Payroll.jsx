@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { getToken } from '../services/auth'
 
 const API_URL = 'http://localhost:8080/api'
 
@@ -27,9 +28,20 @@ function Payroll() {
       setLoading(true)
       setError('')
 
+      const token = getToken()
+
+      const authHeaders = {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+
       const [payrollResponse, employeesResponse] = await Promise.all([
-        fetch(`${API_URL}/payroll`),
-        fetch(`${API_URL}/employees`)
+        fetch(`${API_URL}/payroll`, {
+          headers: authHeaders
+        }),
+        fetch(`${API_URL}/employees`, {
+          headers: authHeaders
+        })
       ])
 
       if (!payrollResponse.ok) {
@@ -177,12 +189,15 @@ function Payroll() {
 
       const payrollMonth = `${form.payrollMonth}-01`
 
+      const token = getToken()
+
       const response = await fetch(
         `${API_URL}/payroll/generate`,
         {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
           },
           body: JSON.stringify({
             employeeId: Number(form.employeeId),
@@ -230,10 +245,16 @@ function Payroll() {
       setFinalizingId(payrollId)
       setError('')
 
+      const token = getToken()
+
       const response = await fetch(
         `${API_URL}/payroll/${payrollId}/finalize`,
         {
-          method: 'PATCH'
+          method: 'PATCH',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
         }
       )
 
