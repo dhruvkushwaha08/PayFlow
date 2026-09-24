@@ -12,6 +12,20 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: ci_password
+          MYSQL_DATABASE: payflow_db
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -pci_password"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -25,10 +39,18 @@ jobs:
 
       - name: Run backend tests
         working-directory: backend
+        env:
+          DB_URL: jdbc:mysql://127.0.0.1:3306/payflow_db
+          DB_USERNAME: root
+          DB_PASSWORD: ci_password
         run: ./mvnw test
 
       - name: Build backend
         working-directory: backend
+        env:
+          DB_URL: jdbc:mysql://127.0.0.1:3306/payflow_db
+          DB_USERNAME: root
+          DB_PASSWORD: ci_password
         run: ./mvnw clean package -DskipTests
 
       - name: Set up Node.js
