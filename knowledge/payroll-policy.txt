@@ -1,0 +1,33 @@
+PAYFLOW PAYROLL POLICY
+
+1. Payroll is generated for each employee on a monthly basis.
+
+2. Earned salary is calculated using the employee's applicable base salary and the number of payable attendance days in the payroll month.
+
+3. A PRESENT attendance day counts as 1 payable day.
+
+4. A HALF_DAY attendance counts as 0.5 payable day.
+
+5. ABSENT and LEAVE attendance do not count as payable days.
+
+6. Performance bonuses are added to the employee's earned salary.
+
+7. Overtime compensation is calculated using the approved overtime hours and the applicable overtime rate.
+
+8. Pending advances applicable to the payroll month are deducted from the employee's payroll.
+
+9. Other deductions are subtracted from the employee's gross payable amount when applicable.
+
+10. Net salary is calculated as:
+
+Net Salary = Earned Salary + Bonus + Overtime - Advance Deduction - Other Deductions
+
+11. A payroll record initially has DRAFT status.
+
+12. A payroll can be finalized after payroll generation.
+
+13. Once payroll is finalized, the payroll record becomes FINALIZED.
+
+14. Finalized payroll records must not be modified through normal payroll operations.
+
+15. Payroll calculations are performed by the PayFlow backend. AI features may explain payroll calculations but must not independently calculate or modify payroll records.

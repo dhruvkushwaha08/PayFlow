@@ -1,0 +1,21 @@
+PAYFLOW OVERTIME POLICY
+
+1. Overtime compensation is provided for approved overtime work performed by an employee.
+
+2. Overtime is recorded for a specific employee and working date.
+
+3. Overtime hours must be greater than zero.
+
+4. Overtime records cannot be created for future dates.
+
+5. Overtime records cannot be created for inactive employees.
+
+6. The overtime amount is calculated by the PayFlow backend using:
+
+Overtime Amount = Overtime Hours × Overtime Rate
+
+7. The overtime rate is determined when the overtime record is created.
+
+8. Overtime compensation for a payroll month is included in that employee's payroll calculation.
+
+9. AI features may explain overtime calculations and applicable policy information but must not independently modify overtime records or payroll.

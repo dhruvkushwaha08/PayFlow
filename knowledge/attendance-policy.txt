@@ -1,0 +1,29 @@
+PAYFLOW ATTENDANCE POLICY
+
+1. Attendance is recorded for each employee for a specific working date.
+
+2. Each employee can have only one attendance record for a given date.
+
+3. The supported attendance statuses are:
+   PRESENT
+   ABSENT
+   HALF_DAY
+   LEAVE
+
+4. PRESENT attendance contributes 1 payable day.
+
+5. HALF_DAY attendance contributes 0.5 payable day.
+
+6. ABSENT attendance contributes 0 payable days.
+
+7. LEAVE attendance contributes 0 payable days.
+
+8. Attendance records cannot be created for future dates.
+
+9. Attendance records cannot be created for inactive employees.
+
+10. Attendance records associated with a finalized payroll month are locked and cannot be modified through normal attendance operations.
+
+11. Attendance information is used by the payroll system to calculate the employee's earned salary.
+
+12. AI features may explain attendance and payroll rules but must not modify attendance records.

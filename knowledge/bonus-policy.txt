@@ -1,0 +1,25 @@
+PAYFLOW BONUS POLICY
+
+1. Bonuses may be provided to employees as additional compensation.
+
+2. A bonus is associated with a specific employee and bonus date.
+
+3. Supported bonus types are:
+   PERCENTAGE
+   FIXED
+
+4. For a FIXED bonus, the specified bonus amount is added to the employee's payroll.
+
+5. For a PERCENTAGE bonus, the bonus percentage is applied to the employee's earned salary for the applicable payroll month.
+
+6. A percentage bonus cannot exceed 100 percent.
+
+7. Bonuses cannot be created for future dates.
+
+8. Bonuses cannot be created for inactive employees.
+
+9. Bonus calculations are performed by the PayFlow backend during payroll generation.
+
+10. Bonus amounts are included in the employee's payroll calculation.
+
+11. AI features may explain bonus calculations and policy information but must not independently modify bonuses or payroll records.

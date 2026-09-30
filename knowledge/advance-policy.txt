@@ -1,0 +1,25 @@
+PAYFLOW ADVANCE POLICY
+
+1. An employee may receive a salary advance recorded in the PayFlow system.
+
+2. Every advance is associated with a specific employee.
+
+3. Advance amounts must be greater than zero.
+
+4. Advances cannot be created for future dates.
+
+5. Advances cannot be created for inactive employees.
+
+6. A newly created advance has PENDING status.
+
+7. An advance may transition from PENDING to DEDUCTED when it is applied to payroll.
+
+8. A PENDING advance may be cancelled when it is no longer applicable.
+
+9. An advance that has been DEDUCTED or CANCELLED must not be deleted through normal operations.
+
+10. Pending advances applicable up to the payroll month-end are deducted when the corresponding payroll is finalized.
+
+11. Advance deductions reduce the employee's net salary.
+
+12. AI features may explain advance deductions and policy rules but must not independently modify advance records or payroll.

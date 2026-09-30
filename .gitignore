@@ -21,3 +21,5 @@ Thumbs.db
 
 # Logs
 *.log
+# Local AI model files
+backend/models/
