@@ -4356,3 +4356,120 @@ a {
     align-self: flex-start;
   }
 }
+/* =========================
+   AI ASSISTANT
+   ========================= */
+
+.ai-answer {
+  margin-top: 24px;
+  padding: 22px 24px;
+  background: linear-gradient(
+    135deg,
+    #faf6fc 0%,
+    #f4edf7 100%
+  );
+  border: 1px solid rgba(210, 192, 218, 0.85);
+  border-left: 4px solid var(--lavender-dark);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(91, 70, 101, 0.08);
+}
+
+.ai-answer-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(210, 192, 218, 0.6);
+}
+
+.ai-answer-label {
+  display: block;
+  margin-bottom: 4px;
+  color: #8f7198;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.ai-answer-header h3 {
+  margin: 0;
+  color: #3f3348;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.ai-answer-content {
+  color: #4b4054;
+  font-size: 15px;
+  line-height: 1.8;
+  font-weight: 450;
+}
+
+.ai-answer-content p {
+  margin: 0 0 14px;
+}
+
+.ai-answer-content p:last-child {
+  margin-bottom: 0;
+}
+
+.ai-answer-content strong {
+  color: #3f3348;
+  font-weight: 750;
+}
+
+.ai-answer-content ul,
+.ai-answer-content ol {
+  margin: 10px 0;
+  padding-left: 22px;
+}
+
+.ai-answer-content li {
+  margin-bottom: 6px;
+}
+
+.ai-answer-content .katex-display {
+  margin: 18px 0;
+  padding: 14px 16px;
+  background: #ffffff;
+  border: 1px solid #e8ddea;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+.ai-answer-content .katex {
+  color: #4b3d50;
+}
+
+/* AI Ask Button */
+
+.ai-ask-button {
+  margin-top: 4px;
+  min-width: 110px;
+  padding: 11px 20px;
+  border: none;
+  border-radius: 12px;
+  background: var(--lavender-dark);
+  color: #4b3d50;
+  font-size: 14px;
+  font-weight: 650;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.ai-ask-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 18px rgba(110, 82, 120, 0.16);
+  background: #b39acb;
+}
+
+.ai-ask-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.ai-ask-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}

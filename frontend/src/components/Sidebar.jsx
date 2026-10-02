@@ -10,6 +10,7 @@ function Sidebar() {
     { name: 'Overtime', path: '/overtime' },
     { name: 'Payroll', path: '/payroll' },
     { name: 'Salary Slips', path: '/salary-slips' },
+    { name: 'AI Assistant', path: '/ai-assistant' },
   ]
 
   return (

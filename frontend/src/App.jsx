@@ -13,7 +13,7 @@ import Payroll from './pages/Payroll'
 import SalarySlips from './pages/SalarySlips'
 import Settings from './pages/Settings'
 import Login from './pages/Login'
-
+import AIAssistant from './pages/AIAssistant'
 function App() {
     return (
         <BrowserRouter>
@@ -113,6 +113,16 @@ function App() {
                         </ProtectedRoute>
                     }
                 />
+                <Route
+    path="/ai-assistant"
+    element={
+        <ProtectedRoute>
+            <DashboardLayout>
+                <AIAssistant />
+            </DashboardLayout>
+        </ProtectedRoute>
+    }
+/>
 
                 <Route
                     path="/settings"

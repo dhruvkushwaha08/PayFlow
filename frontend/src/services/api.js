@@ -191,3 +191,15 @@ export async function apiDelete(endpoint) {
     method: 'DELETE',
   })
 }
+/* =========================
+   AI ASSISTANT
+   ========================= */
+
+export async function askAiAssistant(question) {
+  return apiRequest('/ai/ask', {
+    method: 'POST',
+    body: JSON.stringify({
+      question,
+    }),
+  })
+}
