@@ -3,9 +3,12 @@ package com.payflow.backend.rag;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,6 +18,30 @@ class RagRetrievalServiceTest {
 
     @Autowired
     private RagRetrievalService ragRetrievalService;
+
+    @Autowired
+    private KnowledgeBaseIngestionService ingestionService;
+
+    @Autowired
+    private RagVectorRepository ragVectorRepository;
+
+    @BeforeEach
+    void setUp() throws Exception {
+
+        // Start with a clean RAG vector store
+        ragVectorRepository.deleteAll();
+
+        // Ingest the policy required by this retrieval test
+        ingestionService.ingestFile(
+                Path.of("../knowledge/overtime-policy.txt"));
+    }
+
+    @AfterEach
+    void cleanup() {
+
+        // Keep the test database clean after the test
+        ragVectorRepository.deleteAll();
+    }
 
     @Test
     void shouldRetrieveRelevantPolicy() {
