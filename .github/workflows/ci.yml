@@ -26,6 +26,20 @@ jobs:
           --health-timeout=5s
           --health-retries=10
 
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: payflow
+          POSTGRES_PASSWORD: ci_rag_password
+          POSTGRES_DB: payflow_rag
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U payflow -d payflow_rag"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -37,12 +51,35 @@ jobs:
           java-version: '25'
           cache: maven
 
+      - name: Download ONNX embedding model
+        working-directory: backend
+        run: |
+          mkdir -p models/onnx/all-MiniLM-L6-v2
+          curl -L \
+            https://huggingface.co/onnx-models/all-MiniLM-L6-v2-onnx/resolve/main/model.onnx \
+            -o models/onnx/all-MiniLM-L6-v2/model.onnx
+          curl -L \
+            https://huggingface.co/onnx-models/all-MiniLM-L6-v2-onnx/resolve/main/tokenizer.json \
+            -o models/onnx/all-MiniLM-L6-v2/tokenizer.json
+
+      - name: Initialize RAG database
+        env:
+          PGPASSWORD: ci_rag_password
+        run: |
+          psql -h 127.0.0.1 -U payflow -d payflow_rag -c "CREATE EXTENSION IF NOT EXISTS vector;"
+          psql -h 127.0.0.1 -U payflow -d payflow_rag -c "CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";"
+          psql -h 127.0.0.1 -U payflow -d payflow_rag -c "CREATE TABLE IF NOT EXISTS vector_store (id UUID PRIMARY KEY DEFAULT uuid_generate_v4(), content TEXT NOT NULL, metadata JSONB, embedding vector(384));"
+          psql -h 127.0.0.1 -U payflow -d payflow_rag -c "CREATE INDEX IF NOT EXISTS vector_store_embedding_idx ON vector_store USING hnsw (embedding vector_cosine_ops);"
+
       - name: Run backend tests
         working-directory: backend
         env:
           DB_URL: jdbc:mysql://127.0.0.1:3306/payflow_db
           DB_USERNAME: root
           DB_PASSWORD: ci_password
+          RAG_DB_URL: jdbc:postgresql://127.0.0.1:5432/payflow_rag
+          RAG_DB_USERNAME: payflow
+          RAG_DB_PASSWORD: ci_rag_password
         run: ./mvnw test
 
       - name: Build backend
@@ -51,6 +88,9 @@ jobs:
           DB_URL: jdbc:mysql://127.0.0.1:3306/payflow_db
           DB_USERNAME: root
           DB_PASSWORD: ci_password
+          RAG_DB_URL: jdbc:postgresql://127.0.0.1:5432/payflow_rag
+          RAG_DB_USERNAME: payflow
+          RAG_DB_PASSWORD: ci_rag_password
         run: ./mvnw clean package -DskipTests
 
       - name: Set up Node.js
